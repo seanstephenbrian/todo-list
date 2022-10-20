@@ -38,7 +38,7 @@ time, mark, audio, video {
     --special-red: #824E4A;
     --tan: #D2BC9B;
 
-	--header-footer-color: #c19464de;
+	--header-footer-color: #ba8e5ede;
 }
 
 @font-face {
@@ -133,7 +133,31 @@ header {
 
 .main {
 	flex: auto;
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--rvv));
+}
 
+.displayed-item {
+	font-family: 'Sublima';
+	font-size: calc(0.6*var(--rvv));
+	padding: calc(0.1*var(--rvv)) calc(0.6*var(--rvv));
+	border: 1px solid black;
+	display: grid;
+	grid-template-columns: calc(var(--rvv)) 1fr calc(var(--rvv));
+	grid-template-areas: "checkbox title open";
+}
+
+.checkbox {
+	grid-area: checkbox;
+}
+
+.title {
+	grid-area: title;
+}
+
+.expand {
+	grid-area: expand;
 }
 
 footer {

@@ -51,18 +51,12 @@ const renderNow = () => {
     // empty out main content section:
     const main = document.querySelector('.main');
     main.innerHTML = '';
-    // create array of current complete list for reference below:
-    const allItems = getAll();
+
     // create array of only items with a 'now' priority:
-    const nowItems = getNow();
-    // create new <div> for each 'now' item & add it to main content section:
-    nowItems.forEach(item => {
-        const displayedItem = document.createElement('div');
-        // set dataset.id to item's index in the main array:
-        displayedItem.dataset.id = allItems.indexOf(item);
-        main.appendChild(displayedItem);
-        displayedItem.textContent = item.title;
-    });
+    const selectedItems = getNow();
+
+    renderItems(selectedItems);
+
 }
 
 const renderLater = () => {
@@ -76,11 +70,23 @@ const renderLater = () => {
     // create array of only items with a 'later' priority:
     const laterItems = getLater();
 
-    // create new <div> for each 'later' item & add it to main content section:
+    // create new <div> for each 'later' item:
     laterItems.forEach(item => {
         const displayedItem = document.createElement('div');
+        displayedItem.classList.add('displayed-item');
+
         // set dataset.id to item's index in the main array:
         displayedItem.dataset.id = allItems.indexOf(item);
+
+            // create nested <div>s for checkbox, title, and expand icon:
+            const checkbox = document.createElement('div');
+            checkbox.classList.add('checkbox');
+            const title = document.createElement('div');
+            title.classList.add('item-title');
+            const expand = document.createElement('div');
+            expand.classList.add('expand');
+
+        // add item <div> to the main content section:
         main.appendChild(displayedItem);
         displayedItem.textContent = item.title;
     });
@@ -95,10 +101,41 @@ const renderAll = () => {
     // create new <div> for each item & add it to main content section:
     allItems.forEach(item => {
         const displayedItem = document.createElement('div');
+        displayedItem.classList.add('displayed-item');
         // set dataset.id to item's index in the main array:
         displayedItem.dataset.id = allItems.indexOf(item);
         main.appendChild(displayedItem);
         displayedItem.textContent = item.title;
+    });
+}
+
+const renderItems = (selectedItems) => {
+
+    // create reference to main content section and current complete to-do list:
+    const main = document.querySelector('.main');
+    const allItems = getAll();
+
+    // create new <div> for each item:
+    selectedItems.forEach(item => {
+        const displayedItem = document.createElement('div');
+        displayedItem.classList.add('displayed-item');
+
+        // set dataset.id to item's index in the main array:
+        displayedItem.dataset.id = allItems.indexOf(item);
+
+            // create nested <div>s for checkbox, title, and expand icon:
+            const checkbox = document.createElement('div');
+            checkbox.classList.add('checkbox');
+            displayedItem.appendChild(checkbox);
+            const title = document.createElement('div');
+            title.classList.add('item-title');
+            displayedItem.appendChild(title);
+            const expand = document.createElement('div');
+            expand.classList.add('expand');
+            displayedItem.appendChild(expand);
+
+        // add item <div> to the main content section:
+        main.appendChild(displayedItem);
     });
 }
 
