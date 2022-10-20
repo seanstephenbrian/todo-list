@@ -21,6 +21,39 @@ time, mark, audio, video {
 
 :root {
     --rvv: calc(1rem + 1vh + 1vw);
+
+	--blue: #2E5169;
+    --blue-gray: #5E686D;
+    --brown: #6F5746;
+    --brown-muted: #63584C;
+    --brown-tan: #A58F85;
+    --forest-green: #4D663E;
+    --green-brown: #5F563F;
+    --gray-tan: #C9BBA3;
+    --tan-gray: #D1C9BA;
+    --off-white: #E4D9C5;
+    --orange-yellow: #E1B270;
+    --orange-tan: #CDA885;
+    --red: #AC3A3E;
+    --special-red: #824E4A;
+    --tan: #D2BC9B;
+
+	--header-footer-color: #8e7d6b;
+}
+
+@font-face {
+	font-family: 'Major Mono';
+	src: url('font/major-mono/major-mono.ttf');
+}
+
+@font-face {
+	font-family: 'Sublima';
+	src: url('font/sublima/sublima-light.otf');
+}
+
+@font-face {
+	font-family: 'Sublima Bold';
+	src: url('font/sublima/sublima-extra-bold.otf');
 }
 
 html,
@@ -43,7 +76,14 @@ header {
 	flex: 1;
 	overflow-x: hidden;
 	display: flex;
+	justify-content: center;
 	align-items: center;
+	font-family: 'Sublima';
+	font-size: calc(0.5*var(--rvv));
+	letter-spacing: calc(0.1*var(--rvv));
+	text-indent: calc(0.1*var(--rvv));
+	background-color: var(--header-footer-color);
+	border-bottom: 1px solid black;
 }
 
 .nav {
@@ -51,16 +91,61 @@ header {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	font-family: 'Major Mono';
+	background-color: #e4d9c574;
+	border-bottom: 1px solid black;
+}
+
+.nav div {
+	width: calc(3*var(--rvv));
+	height: calc(var(--rvv));
+	border: 1px solid black;
+	border-radius: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.now {
+	background-color: #749c5d;
+}
+
+.now,
+.all {
+	letter-spacing: calc(0.3*var(--rvv));
+	text-indent: calc(0.3*var(--rvv));
+}
+
+.later {
+	background-color: #b56c67;
+	letter-spacing: calc(0.1*var(--rvv));
+	text-indent: calc(0.1*var(--rvv));
+}
+
+.all {
+	background-color: #477ea3;
+}
+
+.selected {
+	outline: 3px solid #edbe7c;
 }
 
 .main {
 	flex: auto;
+
 }
 
 footer {
 	height: 5vh;
+	background-color: var(--header-footer-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: calc(0.5*var(--rvv));
+	border-top: 1px solid black;
+	font-family: 'Sublima';
+	font-size: calc(0.4*var(--rvv));
+	letter-spacing: calc(0.1*var(--rvv));
+	text-indent: calc(0.1*var(--rvv));
 }

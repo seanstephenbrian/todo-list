@@ -9,16 +9,7 @@ const renderPage = () => {
         const title = document.createElement('div');
         title.classList.add('title');
         header.appendChild(title);
-        // create repeated 'todo' text across title div:
-        const todoText = 'todo';
-        function repeatTodo() {
-            var repeatedTodo = 'todo';
-            for (let i=0; i<100; i++) {
-                repeatedTodo += todoText;
-            }
-            return repeatedTodo;
-        }
-        title.textContent = repeatTodo();
+        title.textContent = 'NOW // LATER :: a simple to-do list';
 
         // create nav bar:
         const nav = document.createElement('div');
@@ -28,17 +19,18 @@ const renderPage = () => {
             // create nav buttons:
             const now = document.createElement('div');
             now.classList.add('now');
-            now.textContent = 'NOW';
+            now.classList.add('selected');
+            now.textContent = 'now';
             nav.appendChild(now);
 
             const later = document.createElement('div');
             later.classList.add('later');
-            later.textContent = 'LATER';
+            later.textContent = 'later';
             nav.appendChild(later);
 
             const all = document.createElement('div');
             all.classList.add('all');
-            all.textContent = 'ALL';
+            all.textContent = 'all';
             nav.appendChild(all);
 
     // create main to-do list display section:
