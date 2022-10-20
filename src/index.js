@@ -1,1 +1,0 @@
-import { createTodo, getList, deleteTodo, editTodo } from './js/list.js';
