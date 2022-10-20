@@ -48,15 +48,45 @@ const renderHeaderFooter = () => {
 }
 
 const renderNow = () => {
-    return getNow();
+    // empty out main content section:
+    const main = document.querySelector('.main');
+    main.innerHTML = '';
+    // create new array of items with a 'now' priority:
+    const nowItems = getNow();
+    // create new <div> for each 'now' item & add it to main content section:
+    nowItems.forEach(item => {
+        const displayedItem = document.createElement('div');
+        main.appendChild(displayedItem);
+        displayedItem.textContent = item.title;
+    });
 }
 
 const renderLater = () => {
-    return getLater();
+    // empty out main content section:
+    const main = document.querySelector('.main');
+    main.innerHTML = '';
+    // create new array of items with a 'later' priority:
+    const laterItems = getLater();
+    // create new <div> for each 'later' item & add it to main content section:
+    laterItems.forEach(item => {
+        const displayedItem = document.createElement('div');
+        main.appendChild(displayedItem);
+        displayedItem.textContent = item.title;
+    });
 }
 
 const renderAll = () => {
-    return getAll();
+    // empty out main content section:
+    const main = document.querySelector('.main');
+    main.innerHTML = '';
+    // create an array of all current items:
+    const allItems = getAll();
+    // create new <div> for each item & add it to main content section:
+    allItems.forEach(item => {
+        const displayedItem = document.createElement('div');
+        main.appendChild(displayedItem);
+        displayedItem.textContent = item.title;
+    });
 }
 
 export { renderHeaderFooter, renderNow, renderLater, renderAll }
