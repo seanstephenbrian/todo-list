@@ -1,2 +1,1 @@
-import { createTodo, getList, deleteTodo } from './js/list.js';
-
+import { createTodo, getList, deleteTodo, editTodo } from './js/list.js';

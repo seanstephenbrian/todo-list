@@ -2,8 +2,7 @@
 const todoList = [];
 
 // Todo object constructor:
-function Todo(id, title, description, priority, completed) {
-    this.id = id;
+function Todo(title, description, priority, completed) {
     this.title = title;
     this.description = description;
     this.priority = priority;
@@ -12,8 +11,7 @@ function Todo(id, title, description, priority, completed) {
 
 // method to create a new Todo object and add it to the todoList array:
 const createTodo = (title, description, priority, completed) => {
-    const id = todoList.length + 1;
-    const newTodo = new Todo(id, title, description, priority, completed);
+    const newTodo = new Todo(title, description, priority, completed);
     todoList.push(newTodo);
 };
 
@@ -23,10 +21,15 @@ const getList = () => {
 };
 
 // remove a Todo object from the todoList array:
-
 const deleteTodo = (title) => {
     const index = todoList.map(item => item.title).indexOf(title);
     todoList.splice(index, 1);
 };
 
-export { createTodo, getList, deleteTodo }
+// edit a property of a Todo object:
+const editTodo = (title, property, newValue) => {
+    const index = todoList.map(item => item.title).indexOf(title);
+    todoList[index][property] = newValue; 
+};
+
+export { createTodo, getList, deleteTodo, editTodo }
