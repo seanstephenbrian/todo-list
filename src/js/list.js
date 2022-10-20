@@ -15,21 +15,51 @@ const createTodo = (title, description, priority, completed) => {
     todoList.push(newTodo);
 };
 
-// get the current list:
-const getList = () => {
+// get the complete current list:
+const getAll = () => {
     return todoList;
+};
+
+// get the items with 'now' priority:
+const getNow = () => {
+    const nowItems = todoList.filter(item => {
+        if (item.priority === 'now') {
+            return item;
+        }
+    });
+    return nowItems;
+};
+
+// get the items with 'later' priority:
+const getLater = () => {
+    const laterItems = todoList.filter(item => {
+        if (item.priority === 'later') {
+            return item;
+        }
+    });
+    return laterItems;
 };
 
 // remove a Todo object from the todoList array:
 const deleteTodo = (title) => {
-    const index = todoList.map(item => item.title).indexOf(title);
-    todoList.splice(index, 1);
+    // find the item to delete by matching its title to the passed title argument:
+    const itemToDelete = todoList.find(item => item.title === title);
+    // get index of found item:
+    const index = todoList.indexOf(itemToDelete);
+    // make sure that 'itemToDelete' really exists before deleting the item:
+    if (itemToDelete) {
+        todoList.splice(index, 1);
+    }
 };
 
 // edit a property of a Todo object:
 const editTodo = (title, property, newValue) => {
-    const index = todoList.map(item => item.title).indexOf(title);
-    todoList[index][property] = newValue; 
+    // find the item to edit by matching its title to the passed title argument:
+    const itemToEdit = todoList.find(item => item.title === title);
+    // get index of found item:
+    const index = todoList.indexOf(itemToEdit);
+    // change the provided property to the provided new value:
+    todoList[index][property] = newValue;
 };
 
-export { createTodo, getList, deleteTodo, editTodo }
+export { createTodo, getAll, getNow, getLater, deleteTodo, editTodo };

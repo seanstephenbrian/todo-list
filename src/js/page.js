@@ -1,5 +1,7 @@
+import { createTodo, getAll, getNow, getLater, deleteTodo, editTodo } from './list.js';
+
 // generate base page structure:
-const renderPage = () => {
+const renderHeaderFooter = () => {
 
     // create header:
     const header = document.createElement('header');
@@ -37,7 +39,6 @@ const renderPage = () => {
     const main = document.createElement('div');
     main.classList.add('main');
     document.body.appendChild(main);
-    main.textContent = 'main';
 
     // create footer:
     const footer = document.createElement('footer');
@@ -46,4 +47,16 @@ const renderPage = () => {
 
 }
 
-export { renderPage }
+const renderNow = () => {
+    return getNow();
+}
+
+const renderLater = () => {
+    return getLater();
+}
+
+const renderAll = () => {
+    return getAll();
+}
+
+export { renderHeaderFooter, renderNow, renderLater, renderAll }
