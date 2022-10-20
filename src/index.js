@@ -1,6 +1,2 @@
-import './style.css';
+import { createTodo, getList, deleteTodo } from './js/list.js';
 
-const element = document.createElement('div');
-element.classList.add('test');
-document.body.appendChild(element);
-element.innerText = 'test test test test test';
