@@ -51,11 +51,15 @@ const renderNow = () => {
     // empty out main content section:
     const main = document.querySelector('.main');
     main.innerHTML = '';
-    // create new array of items with a 'now' priority:
+    // create array of current complete list for reference below:
+    const allItems = getAll();
+    // create array of only items with a 'now' priority:
     const nowItems = getNow();
     // create new <div> for each 'now' item & add it to main content section:
     nowItems.forEach(item => {
         const displayedItem = document.createElement('div');
+        // set dataset.id to item's index in the main array:
+        displayedItem.dataset.id = allItems.indexOf(item);
         main.appendChild(displayedItem);
         displayedItem.textContent = item.title;
     });
@@ -65,11 +69,18 @@ const renderLater = () => {
     // empty out main content section:
     const main = document.querySelector('.main');
     main.innerHTML = '';
-    // create new array of items with a 'later' priority:
+
+    // create array of current complete list for reference below:
+    const allItems = getAll();
+
+    // create array of only items with a 'later' priority:
     const laterItems = getLater();
+
     // create new <div> for each 'later' item & add it to main content section:
     laterItems.forEach(item => {
         const displayedItem = document.createElement('div');
+        // set dataset.id to item's index in the main array:
+        displayedItem.dataset.id = allItems.indexOf(item);
         main.appendChild(displayedItem);
         displayedItem.textContent = item.title;
     });
@@ -84,6 +95,8 @@ const renderAll = () => {
     // create new <div> for each item & add it to main content section:
     allItems.forEach(item => {
         const displayedItem = document.createElement('div');
+        // set dataset.id to item's index in the main array:
+        displayedItem.dataset.id = allItems.indexOf(item);
         main.appendChild(displayedItem);
         displayedItem.textContent = item.title;
     });
