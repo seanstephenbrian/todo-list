@@ -108,10 +108,12 @@ const renderItems = (selectedItems) => {
                     const checkedCheckbox = document.createElement('img');
                     checkedCheckbox.setAttribute('src', CheckedCheckboxIcon);
                     checkbox.appendChild(checkedCheckbox);
+                    displayedItem.classList.add('completed-item');
                 } else if (item.completed === false) {
                     const emptyCheckbox = document.createElement('img');
                     emptyCheckbox.setAttribute('src', EmptyCheckboxIcon);
                     checkbox.appendChild(emptyCheckbox);
+                    displayedItem.classList.add('incomplete-item');
                 }
 
             displayedItem.appendChild(checkbox);
@@ -133,6 +135,14 @@ const renderItems = (selectedItems) => {
         // add item <div> to the main content section:
         main.appendChild(displayedItem);
     });
+}
+
+const expandItem = (e) => {
+
+    console.log(e.target);
+    // create reference to clicked item:
+
+
 }
 
 export { renderHeaderFooter, renderNow, renderLater, renderAll }
