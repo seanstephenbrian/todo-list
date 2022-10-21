@@ -157,7 +157,7 @@ header {
 	font-size: calc(0.6*var(--rvv));
 	padding: calc(0.1*var(--rvv)) calc(0.3*var(--rvv));
 	border: 1px solid black;
-	border-radius: calc(1.1*var(--rvv));
+	border-radius: calc(0.8*var(--rvv));
 	margin: 0 calc(0.7*var(--rvv));
 	display: grid;
 	grid-template-columns: calc(1.4*var(--rvv)) 1fr calc(var(--rvv));
@@ -166,15 +166,31 @@ header {
 	background-color: var(--item-bg);
 }
 
+.expanded-item {
+	display: grid;
+	grid-template-columns: calc(1.4*var(--rvv)) 1fr calc(var(--rvv));
+	grid-template-rows: 1fr 3fr;
+	grid-template-areas: 
+		"checkbox title expand"
+		". description delete";
+}
+
 .completed-item {
-	text-decoration: underline calc(0.04*var(--rvv)) black;
-	text-decoration-skip-ink: none;
-	text-underline-offset: calc(-0.2*var(--rvv));
-	font-style: italic;
 	filter: grayscale(70%);
 }
 
-.displayed-item div {
+.completed-item .item-title {
+	font-style: italic;
+	text-decoration: underline calc(0.04*var(--rvv)) black;
+	text-decoration-skip-ink: none;
+	text-underline-offset: calc(-0.2*var(--rvv));
+}
+
+.completed-item .item-description {
+	font-style: italic;
+}
+
+.displayed-item img {
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
@@ -188,6 +204,7 @@ header {
 
 .checkbox {
 	grid-area: checkbox;
+	margin-left: calc(0.2*var(--rvv));
 }
 
 .item-title {
@@ -199,6 +216,24 @@ header {
 
 .expand {
 	grid-area: expand;
+}
+
+.item-description {
+	grid-area: description;
+	align-self: flex-start;
+	justify-self: flex-start;
+}
+
+.expanded-item .delete {
+	grid-area: delete;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	margin-bottom: calc(0.3*var(--rvv));
+}
+
+.delete img {
+	height: calc(var(--rvv));
 }
 
 footer {
@@ -227,16 +262,21 @@ footer {
 	}
 
 	.checkbox,
-	.expand {
+	.expand,
+	.delete {
 		transition: 0.075s linear;
 	}
 
 	.checkbox:hover {
-		transform: scale(1.1);
+		transform: scale(1.075);
 	}
 
 	.expand:hover {
 		transform: scale(1.25);
+	}
+
+	.delete:hover {
+		transform: scale(1.075);
 	}
 
 }

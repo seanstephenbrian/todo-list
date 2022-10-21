@@ -1,7 +1,9 @@
 import { createTodo, getAll, getNow, getLater, deleteTodo, editTodo } from './list.js';
+import { addExpandListeners } from './listen.js';
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
 import ExpandIcon from '../img/expand.svg';
+import DeleteIcon from '../img/delete.svg';
 
 // generate base page structure:
 const renderHeaderFooter = () => {
@@ -135,14 +137,51 @@ const renderItems = (selectedItems) => {
         // add item <div> to the main content section:
         main.appendChild(displayedItem);
     });
+
+    // add click listeners on title text & expand icons of all just-rendered items:
+    addExpandListeners();
+
 }
 
 const expandItem = (e) => {
 
-    console.log(e.target);
+    // first, create reference to clicked element to help us determine the item to expand:
+    const clickedElement = e.target;
+    let itemToExpand;
+    // if the title text was clicked, this is true and the parent <div> is the item we want to expand:
+    if (clickedElement.parentNode.classList.contains('displayed-item')) {
+        itemToExpand = e.target.parentNode;
+    // otherwise, the expand icon svg was clicked and we need to ascend another layer in the DOM to get the <div> of the item we want to expand:
+    } else {
+        itemToExpand = e.target.parentNode.parentNode;
+    }
+    itemToExpand.classList.add('expanded-item');
+    
+    // create new <div>s for item description and delete icon:
+    const itemDescription = document.createElement('div');
+    itemDescription.classList.add('item-description');
+        itemDescription.textContent = 'ITEM DESCRIPTION';
+    itemToExpand.appendChild(itemDescription);
+    
+    const deleteIcon = document.createElement('div');
+    deleteIcon.classList.add('delete');
+    const deleteIconSvg = document.createElement('img');
+    deleteIconSvg.setAttribute('src', DeleteIcon);
+    deleteIcon.appendChild(deleteIconSvg);
+    itemToExpand.appendChild(deleteIcon);
+
+
+    // insert expanded version of the item before the old version of the item:
+
+
+    // hide old version of the item:
+
+
+
+    console.log(itemToExpand);
     // create reference to clicked item:
 
 
 }
 
-export { renderHeaderFooter, renderNow, renderLater, renderAll }
+export { renderHeaderFooter, renderNow, renderLater, renderAll, expandItem }

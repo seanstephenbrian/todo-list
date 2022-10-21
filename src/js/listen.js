@@ -1,5 +1,5 @@
 import { setBodyHeight, setBodyWidth } from './body.js';
-import { renderHeaderFooter, renderNow, renderLater, renderAll } from './page.js';
+import { renderHeaderFooter, renderNow, renderLater, renderAll, expandItem } from './page.js';
 
 // event listeners to add when the page first loads:
 const addInitialListeners = () => {
@@ -28,7 +28,26 @@ const addInitialListeners = () => {
     all.addEventListener('click', () => {
         renderAll();
     });
-
 }
 
-export { addInitialListeners };
+// event listeners to expand view of items:
+const addExpandListeners = () => {
+
+    // add listeners to all item title text:
+    const itemTitles = document.querySelectorAll('.item-title');
+    itemTitles.forEach(title => {
+        title.addEventListener('click', (e) => {
+            expandItem(e);
+        });
+    });
+
+    // add listeners to all expand icons:
+    const expandIcons = document.querySelectorAll('div.expand');
+    expandIcons.forEach(icon => {
+        icon.addEventListener('click', (e) => {
+            expandItem(e);
+        });
+    });
+}
+
+export { addInitialListeners, addExpandListeners };
