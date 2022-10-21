@@ -1,5 +1,5 @@
 import { createTodo, getAll, getNow, getLater, getDescription, deleteTodo, editTodo } from './list.js';
-import { addExpandListeners } from './listen.js';
+import { addExpandListeners, addListenersToExpandedItem } from './listen.js';
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
 import ExpandIcon from '../img/expand.svg';
@@ -185,17 +185,7 @@ const expandItem = (e) => {
     deleteIcon.appendChild(deleteIconSvg);
     itemToExpand.appendChild(deleteIcon);
 
-
-    // insert expanded version of the item before the old version of the item:
-
-
-    // shrink old version of the item:
-
-
-
-    // create reference to clicked item:
-
-
+    addListenersToExpandedItem(itemId);
 }
 
 export { renderHeaderFooter, renderNow, renderLater, renderAll, expandItem }

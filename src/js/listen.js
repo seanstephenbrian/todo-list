@@ -1,5 +1,6 @@
 import { setBodyHeight, setBodyWidth } from './body.js';
 import { renderHeaderFooter, renderNow, renderLater, renderAll, expandItem } from './page.js';
+import { deleteTodo } from './list.js';
 
 // event listeners to add when the page first loads:
 const addInitialListeners = () => {
@@ -30,7 +31,7 @@ const addInitialListeners = () => {
     });
 }
 
-// event listeners to expand view of items:
+// event listeners to open expanded view of items:
 const addExpandListeners = () => {
 
     // add listeners to all item title text:
@@ -50,4 +51,17 @@ const addExpandListeners = () => {
     });
 }
 
-export { addInitialListeners, addExpandListeners };
+// event listeners (for delete and shrink actions) to add to an item when it is expanded:
+const addListenersToExpandedItem = (id) => {
+
+    // add listener to delete icon:
+    const deleteIcon = document.querySelector('.delete');
+    deleteIcon.addEventListener('click', () => {
+        deleteTodo(id);
+        renderNow();
+    });
+
+
+}
+
+export { addInitialListeners, addExpandListeners, addListenersToExpandedItem };

@@ -44,17 +44,10 @@ const getDescription = (id) => {
     return todoList[id].description;
 };
 
-// remove a Todo object from the todoList array:
-const deleteTodo = (title) => {
-    // find the item to delete by matching its title to the passed title argument:
-    const itemToDelete = todoList.find(item => item.title === title);
-    // get index of found item:
-    const index = todoList.indexOf(itemToDelete);
-    // make sure that 'itemToDelete' really exists before deleting the item:
-    if (itemToDelete) {
-        todoList.splice(index, 1);
-    }
-};
+// remove a Todo object from the todoList array by using its DOM id as its array index:
+const deleteTodo = (id) => {
+    todoList.splice(id, 1);
+}
 
 // edit a property of a Todo object:
 const editTodo = (title, property, newValue) => {
