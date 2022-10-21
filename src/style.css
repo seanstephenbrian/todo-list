@@ -208,6 +208,7 @@ header {
 }
 
 .item-title {
+	cursor: pointer;
 	position: relative;
 	bottom: 2px;
 	grid-area: title;
@@ -216,6 +217,15 @@ header {
 
 .expand {
 	grid-area: expand;
+}
+
+.shrink {
+	grid-area: expand;
+	aspect-ratio: 1 / 1;
+}
+
+.shrink img {
+	height: calc(var(--rvv));
 }
 
 .item-description {
@@ -263,6 +273,7 @@ footer {
 
 	.checkbox,
 	.expand,
+	.shrink,
 	.delete {
 		transition: 0.075s linear;
 	}
@@ -273,6 +284,10 @@ footer {
 
 	.expand:hover {
 		transform: scale(1.25);
+	}
+
+	.shrink:hover {
+		transform: scale(1.1);
 	}
 
 	.delete:hover {

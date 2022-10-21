@@ -3,6 +3,7 @@ import { addExpandListeners } from './listen.js';
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
 import ExpandIcon from '../img/expand.svg';
+import ShrinkIcon from '../img/shrink.svg';
 import DeleteIcon from '../img/delete.svg';
 
 // generate base page structure:
@@ -156,7 +157,17 @@ const expandItem = (e) => {
         itemToExpand = e.target.parentNode.parentNode;
     }
     itemToExpand.classList.add('expanded-item');
-    
+
+    // grab reference to expand icon, add a new shrink icon before it, and delete the expand icon:
+    const expand = itemToExpand.children[2];
+    const shrink = document.createElement('div');
+    shrink.classList.add('shrink');
+    const shrinkIcon = document.createElement('img');
+    shrinkIcon.setAttribute('src', ShrinkIcon);
+    shrink.appendChild(shrinkIcon);
+    itemToExpand.insertBefore(shrink, expand);
+    expand.remove();
+
     // create new <div>s for item description and delete icon:
     const itemDescription = document.createElement('div');
     itemDescription.classList.add('item-description');
@@ -174,11 +185,10 @@ const expandItem = (e) => {
     // insert expanded version of the item before the old version of the item:
 
 
-    // hide old version of the item:
+    // shrink old version of the item:
 
 
 
-    console.log(itemToExpand);
     // create reference to clicked item:
 
 
