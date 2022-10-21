@@ -44,19 +44,27 @@ const getDescription = (id) => {
     return todoList[id].description;
 };
 
+const getCompleted = (id) => {
+    return todoList[id].completed;
+}
+
 // remove a Todo object from the todoList array by using its DOM id as its array index:
 const deleteTodo = (id) => {
     todoList.splice(id, 1);
 }
 
 // edit a property of a Todo object:
-const editTodo = (title, property, newValue) => {
-    // find the item to edit by matching its title to the passed title argument:
-    const itemToEdit = todoList.find(item => item.title === title);
-    // get index of found item:
-    const index = todoList.indexOf(itemToEdit);
-    // change the provided property to the provided new value:
-    todoList[index][property] = newValue;
+const editTodo = (id, property, newValue) => {
+    todoList[id][property] = newValue;
 };
 
-export { createTodo, getAll, getNow, getLater, getDescription, deleteTodo, editTodo };
+export { 
+    createTodo, 
+    getAll, 
+    getNow, 
+    getLater, 
+    getDescription, 
+    getCompleted, 
+    deleteTodo, 
+    editTodo 
+}

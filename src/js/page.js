@@ -1,5 +1,5 @@
 import { createTodo, getAll, getNow, getLater, getDescription, deleteTodo, editTodo } from './list.js';
-import { addExpandListeners, addListenersToExpandedItem } from './listen.js';
+import { addExpandListeners, addListenersToExpandedItem, addCheckboxListener } from './listen.js';
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
 import ExpandIcon from '../img/expand.svg';
@@ -170,9 +170,12 @@ const renderItems = (selectedItems) => {
 
         // add item <div> to the main content section:
         main.appendChild(displayedItem);
+
+        // add click listener to checkbox of new item using its id:
+        addCheckboxListener(displayedItem.dataset.id);
     });
 
-    // add click listeners on title text & expand icons of all just-rendered items:
+    // add click listeners on title text & expand icons of all rendered items:
     addExpandListeners();
 
 }
