@@ -1,4 +1,4 @@
-import { createTodo, getAll, getNow, getLater, deleteTodo, editTodo } from './list.js';
+import { createTodo, getAll, getNow, getLater, getDescription, deleteTodo, editTodo } from './list.js';
 import { addExpandListeners } from './listen.js';
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
@@ -158,6 +158,9 @@ const expandItem = (e) => {
     }
     itemToExpand.classList.add('expanded-item');
 
+    // save reference to itemToExpand's data-id:
+    const itemId = itemToExpand.dataset.id;
+
     // grab reference to expand icon, add a new shrink icon before it, and delete the expand icon:
     const expand = itemToExpand.children[2];
     const shrink = document.createElement('div');
@@ -168,12 +171,13 @@ const expandItem = (e) => {
     itemToExpand.insertBefore(shrink, expand);
     expand.remove();
 
-    // create new <div>s for item description and delete icon:
+    // create new <div> for item description and get text from todoList array:
     const itemDescription = document.createElement('div');
     itemDescription.classList.add('item-description');
-        itemDescription.textContent = 'ITEM DESCRIPTION';
+    itemDescription.textContent = getDescription(itemId);
     itemToExpand.appendChild(itemDescription);
     
+    // create new <div> for delete icon and add delete svg as a child <img>:
     const deleteIcon = document.createElement('div');
     deleteIcon.classList.add('delete');
     const deleteIconSvg = document.createElement('img');

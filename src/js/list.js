@@ -40,6 +40,10 @@ const getLater = () => {
     return laterItems;
 };
 
+const getDescription = (id) => {
+    return todoList[id].description;
+};
+
 // remove a Todo object from the todoList array:
 const deleteTodo = (title) => {
     // find the item to delete by matching its title to the passed title argument:
@@ -62,4 +66,4 @@ const editTodo = (title, property, newValue) => {
     todoList[index][property] = newValue;
 };
 
-export { createTodo, getAll, getNow, getLater, deleteTodo, editTodo };
+export { createTodo, getAll, getNow, getLater, getDescription, deleteTodo, editTodo };
