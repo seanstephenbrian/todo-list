@@ -53,9 +53,9 @@ const renderNow = () => {
     main.innerHTML = '';
 
     // create array of only items with a 'now' priority:
-    const selectedItems = getNow();
+    const nowItems = getNow();
 
-    renderItems(selectedItems);
+    renderItems(nowItems);
 
 }
 
@@ -70,26 +70,7 @@ const renderLater = () => {
     // create array of only items with a 'later' priority:
     const laterItems = getLater();
 
-    // create new <div> for each 'later' item:
-    laterItems.forEach(item => {
-        const displayedItem = document.createElement('div');
-        displayedItem.classList.add('displayed-item');
-
-        // set dataset.id to item's index in the main array:
-        displayedItem.dataset.id = allItems.indexOf(item);
-
-            // create nested <div>s for checkbox, title, and expand icon:
-            const checkbox = document.createElement('div');
-            checkbox.classList.add('checkbox');
-            const title = document.createElement('div');
-            title.classList.add('item-title');
-            const expand = document.createElement('div');
-            expand.classList.add('expand');
-
-        // add item <div> to the main content section:
-        main.appendChild(displayedItem);
-        displayedItem.textContent = item.title;
-    });
+    renderItems(laterItems);
 }
 
 const renderAll = () => {
@@ -98,15 +79,8 @@ const renderAll = () => {
     main.innerHTML = '';
     // create an array of all current items:
     const allItems = getAll();
-    // create new <div> for each item & add it to main content section:
-    allItems.forEach(item => {
-        const displayedItem = document.createElement('div');
-        displayedItem.classList.add('displayed-item');
-        // set dataset.id to item's index in the main array:
-        displayedItem.dataset.id = allItems.indexOf(item);
-        main.appendChild(displayedItem);
-        displayedItem.textContent = item.title;
-    });
+ 
+    renderItems(allItems);
 }
 
 const renderItems = (selectedItems) => {
