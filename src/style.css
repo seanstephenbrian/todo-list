@@ -144,8 +144,9 @@ header {
 	padding: calc(0.1*var(--rvv)) calc(0.6*var(--rvv));
 	border: 1px solid black;
 	display: grid;
-	grid-template-columns: calc(var(--rvv)) 1fr calc(var(--rvv));
-	grid-template-areas: "checkbox title open";
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
+	grid-template-areas: "checkbox title expand";
 }
 
 .checkbox {

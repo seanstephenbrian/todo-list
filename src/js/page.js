@@ -1,4 +1,7 @@
 import { createTodo, getAll, getNow, getLater, deleteTodo, editTodo } from './list.js';
+import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
+import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
+import ExpandIcon from '../img/expand.svg';
 
 // generate base page structure:
 const renderHeaderFooter = () => {
@@ -56,7 +59,6 @@ const renderNow = () => {
     const nowItems = getNow();
 
     renderItems(nowItems);
-
 }
 
 const renderLater = () => {
@@ -97,15 +99,35 @@ const renderItems = (selectedItems) => {
         // set dataset.id to item's index in the main array:
         displayedItem.dataset.id = allItems.indexOf(item);
 
-            // create nested <div>s for checkbox, title, and expand icon:
+            // create <div>s for checkbox icons:
             const checkbox = document.createElement('div');
             checkbox.classList.add('checkbox');
+
+                // check if item is completed to determine whether to insert an empty or checked checkbox svg:
+                if (item.completed === true) {
+                    const checkedCheckbox = document.createElement('img');
+                    checkedCheckbox.setAttribute('src', CheckedCheckboxIcon);
+                    checkbox.appendChild(checkedCheckbox);
+                } else if (item.completed === false) {
+                    const emptyCheckbox = document.createElement('img');
+                    emptyCheckbox.setAttribute('src', EmptyCheckboxIcon);
+                    checkbox.appendChild(emptyCheckbox);
+                }
+
             displayedItem.appendChild(checkbox);
+
+            // create <div>s for item title text:
             const title = document.createElement('div');
+            title.textContent = item.title;
             title.classList.add('item-title');
             displayedItem.appendChild(title);
+
+            // create <div>s for expand icons:
             const expand = document.createElement('div');
             expand.classList.add('expand');
+            const expandIcon = document.createElement('img');
+            expandIcon.setAttribute('src', ExpandIcon);
+            expand.appendChild(expandIcon);
             displayedItem.appendChild(expand);
 
         // add item <div> to the main content section:
