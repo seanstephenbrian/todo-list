@@ -1,5 +1,13 @@
 import { setBodyHeight, setBodyWidth } from './body.js';
-import { renderHeaderFooter, renderNow, renderLater, renderAll, expandItem, getCurrentView } from './page.js';
+import { 
+    renderNow, 
+    renderLater, 
+    renderAll, 
+    expandItem, 
+    getCurrentView,
+    checkCheckbox,
+    uncheckCheckbox 
+    } from './page.js';
 import { deleteTodo, editTodo, getCompleted } from './list.js';
 
 // event listeners to add when the page first loads:
@@ -65,12 +73,16 @@ const addCheckboxListener = (id) => {
             // then change the DOM element's class & styling so the view doesn't have to be re-rendered:
             parentItem.classList.remove('incomplete-item');
             parentItem.classList.add('completed-item');
+            // and check the box:
+            checkCheckbox(itemCheckbox);
 
         // if todo is completed, mark it as incomplete:
         } else if (completedStatus === true) {
             editTodo(id, 'completed', false);
             parentItem.classList.remove('completed-item');
             parentItem.classList.add('incomplete-item');
+            // and uncheck the box:
+            uncheckCheckbox(itemCheckbox);
         }
     });
 

@@ -179,8 +179,14 @@ const renderItems = (selectedItems) => {
     addExpandListeners();
 }
 
-const toggleCheckbox = () => {
-    
+const checkCheckbox = (checkboxDiv) => {
+    const checkboxIcon = checkboxDiv.firstChild;
+    checkboxIcon.setAttribute('src', CheckedCheckboxIcon);
+}
+
+const uncheckCheckbox = (checkboxDiv) => {
+    const checkboxIcon = checkboxDiv.firstChild;
+    checkboxIcon.setAttribute('src', EmptyCheckboxIcon);
 }
 
 const expandItem = (e) => {
@@ -242,5 +248,7 @@ export {
     renderAll, 
     expandItem, 
     updateCurrentView, 
-    getCurrentView 
+    getCurrentView,
+    checkCheckbox,
+    uncheckCheckbox
 }
