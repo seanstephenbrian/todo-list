@@ -30,17 +30,19 @@ const renderHeaderFooter = () => {
             // create nav buttons:
             const now = document.createElement('div');
             now.classList.add('now');
-            now.classList.add('selected');
+            now.classList.add('nav-button');
             now.textContent = 'now';
             nav.appendChild(now);
 
             const later = document.createElement('div');
             later.classList.add('later');
+            later.classList.add('nav-button');
             later.textContent = 'later';
             nav.appendChild(later);
 
             const all = document.createElement('div');
             all.classList.add('all');
+            all.classList.add('nav-button');
             all.textContent = 'all';
             nav.appendChild(all);
 
@@ -56,7 +58,26 @@ const renderHeaderFooter = () => {
 
 }
 
+// apply an outline style to the selected display's nav button:
+const outlineNavButton = (page) => {
+
+    // create reference to all three nav buttons:
+    const navButtons = document.querySelectorAll('.nav-button');
+    // remove 'selected' class from any button that has it:
+    navButtons.forEach(button => {
+        if (button.classList.contains('selected')) {
+            button.classList.remove('selected');
+        }
+    });
+    // then add the 'selected' class to only the chosen page:
+    const clickedButton = document.querySelector(`.${page}`);
+    clickedButton.classList.add('selected');
+}
+
 const renderNow = () => {
+    // outline the 'now' button:
+    outlineNavButton('now');
+
     // empty out main content section:
     const main = document.querySelector('.main');
     main.innerHTML = '';
@@ -70,6 +91,9 @@ const renderNow = () => {
 }
 
 const renderLater = () => {
+    // outline the 'later' button:
+    outlineNavButton('later');
+
     // empty out main content section:
     const main = document.querySelector('.main');
     main.innerHTML = '';
@@ -83,6 +107,9 @@ const renderLater = () => {
 }
 
 const renderAll = () => {
+    // outline the 'all' button:
+    outlineNavButton('all');
+
     // empty out main content section:
     const main = document.querySelector('.main');
     main.innerHTML = '';
