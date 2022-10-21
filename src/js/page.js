@@ -1,5 +1,16 @@
-import { createTodo, getAll, getNow, getLater, getDescription, deleteTodo, editTodo } from './list.js';
-import { addExpandListeners, addListenersToExpandedItem, addCheckboxListener } from './listen.js';
+import { 
+    getAll, 
+    getNow, 
+    getLater, 
+    getDescription } from './list.js';
+
+import { 
+    addExpandListeners, 
+    addListenersToExpandedItem,
+    removeListenersFromExpandedItem, 
+    addCheckboxListener,
+    replaceExpandListener } from './listen.js';
+
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
 import ExpandIcon from '../img/expand.svg';
@@ -219,6 +230,7 @@ const expandItem = (e) => {
     // create new <div> for item description and get text from todoList array:
     const itemDescription = document.createElement('div');
     itemDescription.classList.add('item-description');
+    itemDescription.classList.add(`${itemId}-description`);
     itemDescription.textContent = getDescription(itemId);
     itemToExpand.appendChild(itemDescription);
     
@@ -230,7 +242,41 @@ const expandItem = (e) => {
     deleteIcon.appendChild(deleteIconSvg);
     itemToExpand.appendChild(deleteIcon);
 
+    removeListenersFromExpandedItem(itemId);
+
     addListenersToExpandedItem(itemId);
+}
+
+const shrinkItem = (e) => {
+
+    // same protocol as expandItem():
+    const clickedElement = e.target;
+    let itemToShrink = clickedElement.parentNode.parentNode;
+    itemToShrink.classList.remove('expanded-item');
+
+    // get reference to shrink icon, add a new expand icon before it, then delete the shrink icon:
+    const shrink = itemToShrink.children[2];
+    const expand = document.createElement('div');
+    expand.classList.add('expand');
+    const expandIcon = document.createElement('img');
+    expandIcon.setAttribute('src', ExpandIcon);
+    expand.appendChild(expandIcon);
+    itemToShrink.insertBefore(expand, shrink);
+    shrink.remove();
+
+    // select expanded item description, then delete it:
+    const itemDescription = itemToShrink.children[3];
+    itemDescription.remove();
+
+    // select delete icon <div>, then delete it:
+    const deleteIcon = itemToShrink.children[3];
+    deleteIcon.remove();
+
+    const itemTitle = itemToShrink.children[1];
+    replaceExpandListener(itemTitle);
+
+    replaceExpandListener(expand);
+
 }
 
 const updateCurrentView = (page) => {
@@ -246,7 +292,8 @@ export {
     renderNow, 
     renderLater, 
     renderAll, 
-    expandItem, 
+    expandItem,
+    shrinkItem, 
     updateCurrentView, 
     getCurrentView,
     checkCheckbox,

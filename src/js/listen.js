@@ -3,11 +3,11 @@ import {
     renderNow, 
     renderLater, 
     renderAll, 
-    expandItem, 
+    expandItem,
+    shrinkItem, 
     getCurrentView,
     checkCheckbox,
-    uncheckCheckbox 
-    } from './page.js';
+    uncheckCheckbox } from './page.js';
 import { deleteTodo, editTodo, getCompleted } from './list.js';
 
 // event listeners to add when the page first loads:
@@ -45,17 +45,13 @@ const addExpandListeners = () => {
     // add listeners to all item title text:
     const itemTitles = document.querySelectorAll('.item-title');
     itemTitles.forEach(title => {
-        title.addEventListener('click', (e) => {
-            expandItem(e);
-        });
+        title.addEventListener('click', expandItem);
     });
 
     // add listeners to all expand icons:
     const expandIcons = document.querySelectorAll('div.expand');
     expandIcons.forEach(icon => {
-        icon.addEventListener('click', (e) => {
-            expandItem(e);
-        });
+        icon.addEventListener('click', expandItem);
     });
 }
 
@@ -85,7 +81,6 @@ const addCheckboxListener = (id) => {
             uncheckCheckbox(itemCheckbox);
         }
     });
-
 }
 
 // event listeners (for delete and shrink actions) to add to an item when it is expanded:
@@ -108,11 +103,34 @@ const addListenersToExpandedItem = (id) => {
         }
     });
 
+    // add listener to shrink icon:
+    const icon = parentItem.children[2];
+    icon.addEventListener('click', (e) => {
+        shrinkItem(e);
+    });
+}
+
+// remove click listeners from an expanded item as they are no longer necessary:
+const removeListenersFromExpandedItem = (id) => {
+    const item = document.querySelector(`[data-id='${id}'`);
+    const itemTitle = item.children[1];
+    itemTitle.removeEventListener('click', expandItem);
+    const itemIcon = item.children[2];
+    itemIcon.removeEventListener('click', expandItem);
+}
+
+// function to attach new expand click listener on item elements -- this is necessary because the listeners are removed when the item expands.
+const replaceExpandListener = (element) => {
+    element.addEventListener('click', (e) => {
+        expandItem(e);
+    });
 }
 
 export { 
     addInitialListeners, 
     addExpandListeners, 
     addListenersToExpandedItem,
-    addCheckboxListener
+    removeListenersFromExpandedItem,
+    addCheckboxListener,
+    replaceExpandListener
 }
