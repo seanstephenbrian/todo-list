@@ -80,7 +80,8 @@ const addCheckboxListener = (id) => {
 const addListenersToExpandedItem = (id) => {
 
     // add listener to delete icon:
-    const deleteIcon = document.querySelector('.delete');
+    const parentItem = document.querySelector(`[data-id='${id}'`);
+    const deleteIcon = parentItem.lastChild;
     deleteIcon.addEventListener('click', () => {
         // delete item:
         deleteTodo(id);

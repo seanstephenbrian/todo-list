@@ -177,7 +177,10 @@ const renderItems = (selectedItems) => {
 
     // add click listeners on title text & expand icons of all rendered items:
     addExpandListeners();
+}
 
+const toggleCheckbox = () => {
+    
 }
 
 const expandItem = (e) => {
