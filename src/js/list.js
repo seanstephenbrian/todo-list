@@ -1,4 +1,4 @@
-// initiate empty todoList array:
+// create empty todoList array:
 const todoList = [];
 
 // Todo object constructor:

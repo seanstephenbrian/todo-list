@@ -6,6 +6,9 @@ import ExpandIcon from '../img/expand.svg';
 import ShrinkIcon from '../img/shrink.svg';
 import DeleteIcon from '../img/delete.svg';
 
+// create currentView variable to track the current page display:
+let currentView;
+
 // generate base page structure:
 const renderHeaderFooter = () => {
 
@@ -62,6 +65,8 @@ const renderNow = () => {
     const nowItems = getNow();
 
     renderItems(nowItems);
+
+    updateCurrentView('now');
 }
 
 const renderLater = () => {
@@ -69,13 +74,12 @@ const renderLater = () => {
     const main = document.querySelector('.main');
     main.innerHTML = '';
 
-    // create array of current complete list for reference below:
-    const allItems = getAll();
-
     // create array of only items with a 'later' priority:
     const laterItems = getLater();
 
     renderItems(laterItems);
+
+    updateCurrentView('later');
 }
 
 const renderAll = () => {
@@ -86,6 +90,8 @@ const renderAll = () => {
     const allItems = getAll();
  
     renderItems(allItems);
+
+    updateCurrentView('all');
 }
 
 const renderItems = (selectedItems) => {
@@ -188,4 +194,20 @@ const expandItem = (e) => {
     addListenersToExpandedItem(itemId);
 }
 
-export { renderHeaderFooter, renderNow, renderLater, renderAll, expandItem }
+const updateCurrentView = (page) => {
+    currentView = page;
+}
+
+const getCurrentView = () => {
+    return currentView;
+}
+
+export { 
+    renderHeaderFooter, 
+    renderNow, 
+    renderLater, 
+    renderAll, 
+    expandItem, 
+    updateCurrentView, 
+    getCurrentView 
+}

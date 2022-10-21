@@ -1,5 +1,5 @@
 import { setBodyHeight, setBodyWidth } from './body.js';
-import { renderHeaderFooter, renderNow, renderLater, renderAll, expandItem } from './page.js';
+import { renderHeaderFooter, renderNow, renderLater, renderAll, expandItem, getCurrentView } from './page.js';
 import { deleteTodo } from './list.js';
 
 // event listeners to add when the page first loads:
@@ -57,8 +57,17 @@ const addListenersToExpandedItem = (id) => {
     // add listener to delete icon:
     const deleteIcon = document.querySelector('.delete');
     deleteIcon.addEventListener('click', () => {
+        // delete item:
         deleteTodo(id);
-        renderNow();
+        // then check the user's current page before re-rendering:
+        const currentView = getCurrentView();
+        if (currentView === 'now') {
+            renderNow();
+        } else if (currentView === 'later') {
+            renderLater();
+        } else if (currentView === 'all') {
+            renderAll();
+        }
     });
 
 
