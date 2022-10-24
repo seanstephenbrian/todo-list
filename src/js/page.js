@@ -22,6 +22,8 @@ import DeleteIcon from '../img/delete.svg';
 import AddIcon from '../img/add.svg';
 import CloseIcon from '../img/close.svg';
 import FavIcon from '../img/favicon.png';
+import DarkIcon from '../img/dark.svg';
+import LightIcon from '../img/light.svg';
 
 // create currentView variable to track the current page display:
 let currentView;
@@ -47,7 +49,29 @@ const renderHeaderFooter = () => {
         const title = document.createElement('div');
         title.classList.add('title');
         header.appendChild(title);
-        title.textContent = 'NOW // LATER :: a simple to-do list';
+
+            // create light mode icon:
+            const lightMode = document.createElement('div');
+            lightMode.classList.add('light-mode');
+            title.appendChild(lightMode);
+            const lightIcon = document.createElement('img');
+            lightIcon.setAttribute('src', LightIcon);
+            lightMode.appendChild(lightIcon);
+
+            // create title text:
+            const titleText = document.createElement('div');
+            titleText.classList.add('title-text');
+            titleText.textContent = 'NOW // LATER :: a simple to-do list';
+            title.appendChild(titleText);
+
+            // create dark mode icon:
+            const darkMode = document.createElement('div');
+            darkMode.classList.add('dark-mode');
+            title.appendChild(darkMode);
+            const darkIcon = document.createElement('img');
+            darkIcon.setAttribute('src', DarkIcon);
+            darkMode.appendChild(darkIcon);
+
 
         // create nav bar:
         const nav = document.createElement('div');
