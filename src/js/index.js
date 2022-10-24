@@ -1,14 +1,16 @@
 import '../style.css';
 
-import { createTodo, getAll, getNow, getLater, deleteTodo, editTodo } from './list.js';
+import { retrieveStoredList } from './list.js';
 
-import { renderHeaderFooter, renderNow, renderLater, renderAll } from './page.js';
+import { renderHeaderFooter, renderNow } from './page.js';
 
 import { addInitialListeners } from './listen.js';
 
 renderHeaderFooter();
 
 addInitialListeners();
+
+retrieveStoredList();
 
 renderNow();
 

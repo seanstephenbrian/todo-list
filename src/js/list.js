@@ -1,5 +1,24 @@
 // create empty todoList array:
-const todoList = [];
+let todoList = [];
+
+// retrieve the todoList array from localStorage:
+const retrieveStoredList = () => {
+
+    // first, check if to-do array is stored in localStorage:
+    const storedTodoList = localStorage.getItem('todoList');
+    // if there is a storedTodoList, get it and save it to retrievedList:
+    if (storedTodoList) {
+        const retrievedList = JSON.parse(localStorage.getItem('todoList'));
+        
+        // set the local todoList array to the list retrieved from storage:
+        todoList = retrievedList;
+    }
+}
+
+// save the list to localStorage:
+const saveToStorage = () => {
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+}
 
 // Todo object constructor:
 function Todo(title, description, priority, completed) {
@@ -13,6 +32,7 @@ function Todo(title, description, priority, completed) {
 const createTodo = (title, description, priority, completed) => {
     const newTodo = new Todo(title, description, priority, completed);
     todoList.push(newTodo);
+    saveToStorage();
 };
 
 // get the complete current list:
@@ -66,5 +86,7 @@ export {
     getDescription, 
     getCompleted, 
     deleteTodo, 
-    editTodo 
+    editTodo,
+    retrieveStoredList,
+    saveToStorage
 }
