@@ -7,7 +7,8 @@ import {
     shrinkItem, 
     getCurrentView,
     checkCheckbox,
-    uncheckCheckbox } from './page.js';
+    uncheckCheckbox,
+    renderAddForm } from './page.js';
 import { deleteTodo, editTodo, getCompleted } from './list.js';
 
 // event listeners to add when the page first loads:
@@ -36,6 +37,13 @@ const addInitialListeners = () => {
     const all = document.querySelector('.all');
     all.addEventListener('click', () => {
         renderAll();
+    });
+}
+
+const addAddListener = () => {
+    const addButton = document.querySelector('.add-item-button');
+    addButton.addEventListener('click', () => {
+        renderAddForm();
     });
 }
 
@@ -132,5 +140,6 @@ export {
     addListenersToExpandedItem,
     removeListenersFromExpandedItem,
     addCheckboxListener,
-    replaceExpandListener
+    replaceExpandListener,
+    addAddListener
 }

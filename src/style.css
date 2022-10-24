@@ -200,7 +200,7 @@ header {
 	font-style: italic;
 }
 
-.displayed-item.add-item {
+.displayed-item.add-item-button {
 	cursor: pointer;
 	background-color: var(--add-button);
 	height: calc(var(--rvv));
@@ -210,7 +210,7 @@ header {
 	align-items: center;
 }
 
-.add-item img {
+.add-item-button img {
 	max-height: 100%;
 	max-width: 100%;
 }
@@ -300,7 +300,7 @@ footer {
 	.expand,
 	.shrink,
 	.delete,
-	.add-item {
+	.add-item-button {
 		transition: 0.075s linear;
 	}
 
@@ -320,7 +320,7 @@ footer {
 		transform: scale(1.075);
 	}
 
-	.add-item:hover {
+	.add-item-button:hover {
 		transform: scale(1.05);
 	}
 

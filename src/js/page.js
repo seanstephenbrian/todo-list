@@ -9,7 +9,8 @@ import {
     addListenersToExpandedItem,
     removeListenersFromExpandedItem, 
     addCheckboxListener,
-    replaceExpandListener } from './listen.js';
+    replaceExpandListener,
+    addAddListener } from './listen.js';
 
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
@@ -70,14 +71,132 @@ const renderHeaderFooter = () => {
 }
 
 // renders 'add' button within the main content section:
-const renderAdd = () => {
+const renderAddButton = () => {
     const main = document.querySelector('.main');
     const addItem = document.createElement('div');
-    addItem.classList.add('displayed-item','add-item');
+    addItem.classList.add('displayed-item','add-item-button');
     const addIcon = document.createElement('img');
     addIcon.setAttribute('src', AddIcon);
     addItem.appendChild(addIcon);
     main.appendChild(addItem);
+}
+
+const renderAddForm = () => {
+
+    // create add form container:
+    const addForm = document.createElement('div');
+    addForm.classList.add('displayed-item', 'add-form');
+
+    // insert add form before add button:
+    const main = document.querySelector('.main');
+    const addButton = document.querySelector('.add-item-button');
+    main.insertBefore(addForm, addButton);
+
+    // remove add button:
+    addButton.remove();
+
+        // create the form itself:
+        const formItself = document.createElement('form');
+        formItself.classList.add('add-form-itself');
+        formItself.setAttribute('method', 'post');
+        addForm.appendChild(formItself);
+
+            // create the form title:
+            const formTitle = document.createElement('div');
+            formTitle.classList.add('form-title');
+            formItself.appendChild(formTitle);
+
+            // create the form elements:
+
+                // title section:
+                const titleSection = document.createElement('div');
+                titleSection.classList.add('form-element');
+                formItself.appendChild(titleSection);
+
+                    // title label:
+                    const titleLabel = document.createElement('label');
+                    titleLabel.setAttribute('for', 'title');
+                    titleLabel.textContent = 'title:';
+                    titleSection.appendChild(titleLabel);
+
+                    // title input:
+                    const titleInput = document.createElement('input');
+                    titleInput.setAttribute('type', 'text');
+                    titleInput.setAttribute('class', 'title-input');
+                    titleInput.setAttribute('name', 'title');
+                    titleInput.setAttribute('id', 'title');
+                    titleInput.setAttribute('placeholder', 'example: feed the dog');
+                    titleInput.setAttribute('required', true);
+                    titleSection.appendChild(titleInput);
+
+
+                // description section:
+                const descriptionSection = document.createElement('div');
+                descriptionSection.classList.add('form-element');
+                formItself.appendChild(descriptionSection);
+
+                    // description label:
+                    const descriptionLabel = document.createElement('label');
+                    descriptionLabel.setAttribute('for', 'description');
+                    descriptionLabel.textContent = 'description:';
+                    descriptionSection.appendChild(descriptionLabel);
+
+                    // description input:
+                    const descriptionInput = document.createElement('input');
+                    descriptionInput.setAttribute('type', 'text');
+                    descriptionInput.setAttribute('class', 'description-input');
+                    descriptionInput.setAttribute('name', 'description');
+                    descriptionInput.setAttribute('id', 'description');
+                    descriptionInput.setAttribute('placeholder', 'example: fill the dog bowl every day at 9am and 6pm');
+                    descriptionSection.appendChild(descriptionInput);
+
+
+                // priority fieldset:
+                const fieldset = document.createElement('fieldset');
+                formItself.appendChild(fieldset);
+
+                    // 'NOW' priority radio option:
+                    const nowOption = document.createElement('div');
+                    nowOption.classList.add('radio-option', 'now-option');
+                    fieldset.appendChild(nowOption);
+
+                        // NOW input & label:
+                        const nowInput = document.createElement('input');
+                        nowInput.classList.add('radio-input');
+                        nowInput.setAttribute('type', 'radio');
+                        nowInput.setAttribute('id', 'now');
+                        nowInput.setAttribute('name', 'now');
+                        nowInput.setAttribute('value', 'now');
+                        nowInput.setAttribute('required', true);
+                        nowOption.appendChild(nowInput);
+
+                        const nowLabel = document.createElement('label');
+                        nowLabel.setAttribute('for', 'now');
+                        nowLabel.textContent = 'NOW';
+                        nowOption.appendChild(nowLabel);
+
+                    // 'LATER' priority radio option:
+                    const laterOption = document.createElement('div');
+                    laterOption.classList.add('radio-option', 'later-option');
+                    fieldset.appendChild(laterOption);
+                    
+                        // LATER input & label:
+                        const laterInput = document.createElement('input');
+                        laterInput.classList.add('radio-input');
+                        laterInput.setAttribute('type', 'radio');
+                        laterInput.setAttribute('id', 'later');
+                        laterInput.setAttribute('name', 'later');
+                        laterInput.setAttribute('value', 'later');
+                        laterInput.setAttribute('required', true);
+                        laterOption.appendChild(laterInput);
+
+                        const laterLabel = document.createElement('label');
+                        laterLabel.setAttribute('for', 'later');
+                        laterLabel.textContent = 'LATER';
+                        laterOption.appendChild(laterLabel);
+
+    // addAddFormListeners();
+
 }
 
 // apply an outline style to the selected display's nav button:
@@ -146,7 +265,10 @@ const renderItems = (selectedItems) => {
     main.innerHTML = '';
 
     // render 'add' button at the top of the content section:
-    renderAdd();
+    renderAddButton();
+
+    // add click listener to add button:
+    addAddListener();
 
     // create new <div> for each item:
     selectedItems.forEach(item => {
@@ -307,5 +429,6 @@ export {
     updateCurrentView, 
     getCurrentView,
     checkCheckbox,
-    uncheckCheckbox
+    uncheckCheckbox,
+    renderAddForm
 }
