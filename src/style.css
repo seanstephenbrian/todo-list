@@ -44,8 +44,10 @@ time, mark, audio, video {
 	--later-button: #b56c67;
 	--all-button: #e0a95bef;
 	--button-outline: #edbe7c;
+	--all-outline: #f0991fd5;
 	--main-bg: #e1cfae97;
 	--item-bg: #2086ca92;
+	--add-button: #ba8d5e85;
 }
 
 @font-face {
@@ -139,6 +141,10 @@ header {
 	outline: 3px solid var(--button-outline);
 }
 
+.selected.selected-all {
+	outline: 3px solid var(--all-outline);
+}
+
 .main {
 	flex: auto;
 	display: flex;
@@ -192,6 +198,20 @@ header {
 
 .completed-item .item-description {
 	font-style: italic;
+}
+
+.displayed-item.add-item {
+	background-color: var(--add-button);
+	height: calc(var(--rvv));
+	width: calc(3*var(--rvv));
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.add-item img {
+	max-height: 100%;
+	max-width: 100%;
 }
 
 .displayed-item img {

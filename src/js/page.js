@@ -16,6 +16,7 @@ import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
 import ExpandIcon from '../img/expand.svg';
 import ShrinkIcon from '../img/shrink.svg';
 import DeleteIcon from '../img/delete.svg';
+import AddIcon from '../img/add.svg';
 
 // create currentView variable to track the current page display:
 let currentView;
@@ -66,7 +67,17 @@ const renderHeaderFooter = () => {
     const footer = document.createElement('footer');
     document.body.appendChild(footer);
     footer.textContent = 'copyright © 2022 | sean stephen brian';
+}
 
+// renders 'add' button within the main content section:
+const renderAdd = () => {
+    const main = document.querySelector('.main');
+    const addItem = document.createElement('div');
+    addItem.classList.add('displayed-item','add-item');
+    const addIcon = document.createElement('img');
+    addIcon.setAttribute('src', AddIcon);
+    addItem.appendChild(addIcon);
+    main.appendChild(addItem);
 }
 
 // apply an outline style to the selected display's nav button:
@@ -83,15 +94,15 @@ const outlineNavButton = (page) => {
     // then add the 'selected' class to only the chosen page:
     const clickedButton = document.querySelector(`.${page}`);
     clickedButton.classList.add('selected');
+    const allButton = document.querySelector('.all');
+    if (clickedButton === allButton) {
+        clickedButton.classList.add('selected-all');
+    }
 }
 
 const renderNow = () => {
     // outline the 'now' button:
     outlineNavButton('now');
-
-    // empty out main content section:
-    const main = document.querySelector('.main');
-    main.innerHTML = '';
 
     // create array of only items with a 'now' priority:
     const nowItems = getNow();
@@ -105,10 +116,6 @@ const renderLater = () => {
     // outline the 'later' button:
     outlineNavButton('later');
 
-    // empty out main content section:
-    const main = document.querySelector('.main');
-    main.innerHTML = '';
-
     // create array of only items with a 'later' priority:
     const laterItems = getLater();
 
@@ -121,9 +128,6 @@ const renderAll = () => {
     // outline the 'all' button:
     outlineNavButton('all');
 
-    // empty out main content section:
-    const main = document.querySelector('.main');
-    main.innerHTML = '';
     // create an array of all current items:
     const allItems = getAll();
  
@@ -137,6 +141,12 @@ const renderItems = (selectedItems) => {
     // create reference to main content section and current complete to-do list:
     const main = document.querySelector('.main');
     const allItems = getAll();
+
+    // empty out main content section:
+    main.innerHTML = '';
+
+    // render 'add' button at the top of the content section:
+    renderAdd();
 
     // create new <div> for each item:
     selectedItems.forEach(item => {
