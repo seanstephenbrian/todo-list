@@ -145,6 +145,7 @@ const addListenersToExpandedItem = (id) => {
 
 // remove click listeners from an expanded item as they are no longer necessary:
 const removeListenersFromExpandedItem = (id) => {
+    alert('remove listeners event fired');
     const item = document.querySelector(`[data-id='${id}'`);
     const itemTitle = item.children[1];
     itemTitle.removeEventListener('click', expandItem);
@@ -154,9 +155,7 @@ const removeListenersFromExpandedItem = (id) => {
 
 // function to attach new expand click listener on item elements -- this is necessary because the listeners are removed when the item expands.
 const replaceExpandListener = (element) => {
-    element.addEventListener('click', (e) => {
-        expandItem(e);
-    });
+    element.addEventListener('click', expandItem);
 }
 
 export { 

@@ -71,11 +71,13 @@ const getCompleted = (id) => {
 // remove a Todo object from the todoList array by using its DOM id as its array index:
 const deleteTodo = (id) => {
     todoList.splice(id, 1);
+    saveToStorage();
 }
 
 // edit a property of a Todo object:
 const editTodo = (id, property, newValue) => {
     todoList[id][property] = newValue;
+    saveToStorage();
 };
 
 export { 

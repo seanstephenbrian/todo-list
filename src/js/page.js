@@ -240,7 +240,7 @@ const submitForm = () => {
     } else if (document.getElementById('later').checked) {
         priority = 'later';
     }
-    
+
     // add a to-do object to the array using the form values:
     createTodo(title.value, description.value, priority, false);
 
@@ -413,6 +413,7 @@ const uncheckCheckbox = (checkboxDiv) => {
 }
 
 const expandItem = (e) => {
+    alert('expandItem fired');
 
     // first, create reference to clicked element to help us determine the item to expand:
     const clickedElement = e.target;
