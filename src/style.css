@@ -54,6 +54,7 @@ time, mark, audio, video {
 	--priority-button-default: #c8b5a285;
 	--form-button: #ba8d5e85;
 	--form-input-bg: #F3EEE5;
+	--close-button: #986f4471;
 }
 
 @font-face {
@@ -241,6 +242,8 @@ header {
 }
 
 .form-title {
+	margin: 0 1%;
+	max-width: 90vw;
 	grid-area: form-title;
 	display: flex;
 	justify-content: center;
@@ -255,6 +258,22 @@ header {
 	font-style: italic;
 }
 
+.close-button {
+	background-color: var(--close-button);
+	margin-left: auto;
+	border: 1px solid black;
+	height: calc(0.9*var(--rvv));
+	width: calc(0.9*var(--rvv));
+	border-radius: calc(var(--rvv));
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.close-button img {
+	height: 100%;
+}
+
 .title-section {
 	grid-area: title-section;
 	display: grid;
@@ -267,6 +286,7 @@ header {
 
 .title-section input,
 .description-section textarea {
+	width: 93%;
 	background-color: var(--form-input-bg);
 	border: 1px solid black;
 	border-radius: calc(var(--rvv));
@@ -277,11 +297,17 @@ header {
 
 .description-section textarea {
 	border-radius: calc(0.5*var(--rvv));
+	resize: none;
 }
 
 input:focus,
 textarea:focus {
 	outline: 3px solid var(--input-focus-outline);
+}
+
+input:not(:focus),
+textarea:not(:focus) {
+	cursor: pointer;
 }
 
 .description-section {
@@ -295,6 +321,7 @@ textarea:focus {
 }
 
 .priority-section {
+	margin-top: 2px;
 	grid-area: priority-section;
 	display: grid;
 	grid-template-columns: calc(3.5*var(--rvv)) 1fr 1fr;
@@ -304,10 +331,9 @@ textarea:focus {
 	font-size: calc(0.5*var(--rvv));
 }
 
-.now-option,
-.later-option {
-	font-family: 'Major Mono';
+.radio-option {
 	cursor: pointer;
+	font-family: 'Major Mono';
 	width: calc(3*var(--rvv));
 	height: calc(var(--rvv));
 	border: 1px solid black;
@@ -317,6 +343,10 @@ textarea:focus {
 	align-items: center;
 	text-align: center;
 	background-color: var(--priority-button-default);
+}
+
+.radio-option label {
+	cursor: pointer;
 }
 
 .now-option {
@@ -349,14 +379,15 @@ textarea:focus {
 }
 
 .submit-button {
+	cursor: pointer;
 	grid-area: submit-button;
 	font-family: 'Sublima';
-	background-color: var(--form-button);
+	background-color: #87b6d5b4;
 	align-self: center;
 	justify-self: center;
 	border: 1px solid black;
 	height: calc(1.5*var(--rvv));
-	width: calc(1.5*var(--rvv));
+	width: 95%;
 	border-radius: calc(var(--rvv));
 	display: flex;
 	justify-content: center;
@@ -366,7 +397,6 @@ textarea:focus {
 .submit-button img {
 	height: 100%;
 }
-
 
 .displayed-item img {
 	cursor: pointer;
@@ -453,7 +483,10 @@ footer {
 	.expand,
 	.shrink,
 	.delete,
-	.add-item-button {
+	.add-item-button,
+	.radio-option,
+	.submit-button,
+	.close-button {
 		transition: 0.075s linear;
 	}
 
@@ -475,6 +508,18 @@ footer {
 
 	.add-item-button:hover {
 		transform: scale(1.05);
+	}
+
+	.radio-option:hover {
+		transform: scale(1.05);
+	}
+
+	.submit-button:hover {
+		transform: scale(1.075);
+	}
+
+	.close-button:hover {
+		transform: scale(1.1);
 	}
 
 }

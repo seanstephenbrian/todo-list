@@ -20,6 +20,7 @@ import ExpandIcon from '../img/expand.svg';
 import ShrinkIcon from '../img/shrink.svg';
 import DeleteIcon from '../img/delete.svg';
 import AddIcon from '../img/add.svg';
+import CloseIcon from '../img/close.svg';
 
 // create currentView variable to track the current page display:
 let currentView;
@@ -81,6 +82,9 @@ const renderAddButton = () => {
     addIcon.setAttribute('src', AddIcon);
     addItem.appendChild(addIcon);
     main.appendChild(addItem);
+
+    // add click listener to add button:
+    addAddListener();
 }
 
 const renderAddForm = () => {
@@ -111,6 +115,14 @@ const renderAddForm = () => {
             formTitleText.classList.add('form-title-text');
             formTitleText.textContent = 'add a new task';
             formTitle.appendChild(formTitleText);
+
+            // create an 'X' button to close out of the form:
+            const closeButton = document.createElement('div');
+            closeButton.classList.add('close-button');
+            formTitle.appendChild(closeButton);
+            const closeIcon = document.createElement('img');
+            closeIcon.setAttribute('src', CloseIcon);
+            closeButton.appendChild(closeIcon);
 
             // create the form elements:
 
@@ -245,6 +257,7 @@ const submitForm = () => {
 
 };
 
+// changes background color and outline for radio options depending on selection:
 const styleRadioOption = (e) => {
     // select the priority button we want to style:
     const selectedInput = e.target;
@@ -258,6 +271,14 @@ const styleRadioOption = (e) => {
     });
     // add 'selected' class to the button we want to style:
     buttonToSelect.classList.add('selected-priority');
+}
+
+// removes the 'add a new task' from from DOM:
+const removeForm = () => {
+    const form = document.querySelector('.add-form');
+    form.remove();
+    // replace the '+' button which was previously deleted:
+    renderAddButton();
 }
 
 // apply an outline style to the selected display's nav button:
@@ -330,9 +351,6 @@ const renderItems = (selectedItems) => {
 
     // render 'add' button at the top of the content section:
     renderAddButton();
-
-    // add click listener to add button:
-    addAddListener();
 
     // create new <div> for each item:
     selectedItems.forEach(item => {
@@ -496,5 +514,6 @@ export {
     uncheckCheckbox,
     renderAddForm,
     styleRadioOption,
-    submitForm
+    submitForm,
+    removeForm
 }
