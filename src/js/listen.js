@@ -9,7 +9,8 @@ import {
     checkCheckbox,
     uncheckCheckbox,
     renderAddForm,
-    styleRadioOption } from './page.js';
+    styleRadioOption,
+    submitForm } from './page.js';
 import { deleteTodo, editTodo, getCompleted } from './list.js';
 
 // event listeners to add when the page first loads:
@@ -57,6 +58,34 @@ const addFormListeners = () => {
             styleRadioOption(e);
         });
     });
+
+    // add submit listener:
+    const form = document.querySelector('.add-form-itself');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitForm();
+    });
+
+
+
+
+    // const submitForm = document.querySelector('.form-itself');
+    // submitForm.addEventListener('submit', (e) => {
+    //     const titleInput = document.querySelector('.title-input');
+    //     const authorInput = document.querySelector('.author-input');
+    //     const pagesInput = document.querySelector('.pages-input');
+    //     const ratingInput = document.querySelector('.rating-input');
+    //     let readInput;
+    //     if (document.getElementById('read').checked) {
+    //         readInput = 'read';
+    //     } else if (document.getElementById('want-to-read').checked) {
+    //         readInput = 'want-to-read';
+    //     }
+    //     e.preventDefault();
+    //     closeAddBookForm();
+    //     Log.addNewBook(titleInput.value, authorInput.value, pagesInput.value, readInput, parseInt(ratingInput.value));
+    // });
+
 }
 
 // event listeners to open expanded view of items:

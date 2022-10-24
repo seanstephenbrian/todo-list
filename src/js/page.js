@@ -2,7 +2,8 @@ import {
     getAll, 
     getNow, 
     getLater, 
-    getDescription } from './list.js';
+    getDescription,
+    createTodo } from './list.js';
 
 import { 
     addExpandListeners, 
@@ -99,7 +100,7 @@ const renderAddForm = () => {
         // create the form itself:
         const formItself = document.createElement('form');
         formItself.classList.add('add-form-itself');
-        formItself.setAttribute('method', 'post');
+        formItself.setAttribute('method', '');
         addForm.appendChild(formItself);
 
             // create the form title:
@@ -108,7 +109,7 @@ const renderAddForm = () => {
             formItself.appendChild(formTitle);
             const formTitleText = document.createElement('span');
             formTitleText.classList.add('form-title-text');
-            formTitleText.textContent = 'add a new task ::';
+            formTitleText.textContent = 'add a new task';
             formTitle.appendChild(formTitleText);
 
             // create the form elements:
@@ -161,6 +162,7 @@ const renderAddForm = () => {
 
                     // priority label:
                     const priorityLabel = document.createElement('div');
+                    priorityLabel.classList.add('priority-label');
                     priorityLabel.textContent = 'priority:';
                     fieldset.appendChild(priorityLabel);
 
@@ -217,6 +219,32 @@ const renderAddForm = () => {
 
 }
 
+const submitForm = () => {
+
+    // get form values:
+    const title = document.querySelector('.title-input');
+    const description = document.querySelector('.description-input');
+    let priority;
+    if (document.getElementById('now').checked) {
+        priority = 'now';
+    } else if (document.getElementById('later').checked) {
+        priority = 'later';
+    }
+
+    // add a to-do object to the array using the form values:
+    createTodo(title.value, description.value, priority, false);
+
+    // re-render the current page view:
+    if (currentView = 'now') {
+        renderNow();
+    } else if (currentView = 'later') {
+        renderLater();
+    } else if (currentView = 'all') {
+        renderAll();
+    }
+
+};
+
 const styleRadioOption = (e) => {
     // select the priority button we want to style:
     const selectedInput = e.target;
@@ -253,6 +281,7 @@ const outlineNavButton = (page) => {
 }
 
 const renderNow = () => {
+
     // outline the 'now' button:
     outlineNavButton('now');
 
@@ -265,6 +294,7 @@ const renderNow = () => {
 }
 
 const renderLater = () => {
+    
     // outline the 'later' button:
     outlineNavButton('later');
 
@@ -277,6 +307,7 @@ const renderLater = () => {
 }
 
 const renderAll = () => {
+
     // outline the 'all' button:
     outlineNavButton('all');
 
@@ -464,5 +495,6 @@ export {
     checkCheckbox,
     uncheckCheckbox,
     renderAddForm,
-    styleRadioOption
+    styleRadioOption,
+    submitForm
 }

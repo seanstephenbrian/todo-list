@@ -207,10 +207,12 @@ header {
 }
 
 .displayed-item.add-item-button {
+	padding: 0;
+	margin: 0;
 	cursor: pointer;
 	background-color: var(--add-button);
-	height: calc(var(--rvv));
-	width: calc(3*var(--rvv));
+	height: calc(1.5*var(--rvv));
+	width: calc(1.5*var(--rvv));
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -296,6 +298,10 @@ textarea:focus {
 	grid-area: priority-section;
 	display: grid;
 	grid-template-columns: calc(3.5*var(--rvv)) 1fr 1fr;
+}
+
+.priority-label {
+	font-size: calc(0.5*var(--rvv));
 }
 
 .now-option,
