@@ -86,11 +86,13 @@ body {
 
 header {
 	height: 15vh;
+	min-height: calc(3*var(--rvv));
 	display: flex;
 	flex-direction: column;
 }
 
 .title {
+	min-height: calc(0.8*var(--rvv));
 	flex: 1;
 	overflow-x: hidden;
 	display: flex;
@@ -468,6 +470,7 @@ textarea:not(:focus) {
 
 footer {
 	height: 5vh;
+	min-height: calc(0.8*var(--rvv));
 	background-color: var(--title-footer-color);
 	display: flex;
 	justify-content: center;
