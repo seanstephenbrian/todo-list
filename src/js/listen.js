@@ -8,7 +8,8 @@ import {
     getCurrentView,
     checkCheckbox,
     uncheckCheckbox,
-    renderAddForm } from './page.js';
+    renderAddForm,
+    styleRadioOption } from './page.js';
 import { deleteTodo, editTodo, getCompleted } from './list.js';
 
 // event listeners to add when the page first loads:
@@ -44,6 +45,17 @@ const addAddListener = () => {
     const addButton = document.querySelector('.add-item-button');
     addButton.addEventListener('click', () => {
         renderAddForm();
+    });
+}
+
+const addFormListeners = () => {
+
+    // add radio input listeners:
+    const radioInputs = document.querySelectorAll('.radio-input');
+    radioInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+            styleRadioOption(e);
+        });
     });
 }
 
@@ -141,5 +153,6 @@ export {
     removeListenersFromExpandedItem,
     addCheckboxListener,
     replaceExpandListener,
-    addAddListener
+    addAddListener,
+    addFormListeners
 }

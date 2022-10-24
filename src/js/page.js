@@ -10,7 +10,8 @@ import {
     removeListenersFromExpandedItem, 
     addCheckboxListener,
     replaceExpandListener,
-    addAddListener } from './listen.js';
+    addAddListener,
+    addFormListeners } from './listen.js';
 
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
@@ -212,8 +213,23 @@ const renderAddForm = () => {
             formButtonIcon.setAttribute('src', AddIcon);
             formButton.appendChild(formButtonIcon);
 
-    // addAddFormListeners();
+    addFormListeners();
 
+}
+
+const styleRadioOption = (e) => {
+    // select the priority button we want to style:
+    const selectedInput = e.target;
+    const buttonToSelect = selectedInput.parentElement;
+    // clear out existing priority button selection styling:
+    const priorityButtons = document.querySelectorAll('.radio-option');
+    priorityButtons.forEach(button => {
+        if (button.classList.contains('selected-priority')) {
+            button.classList.remove('selected-priority');
+        }
+    });
+    // add 'selected' class to the button we want to style:
+    buttonToSelect.classList.add('selected-priority');
 }
 
 // apply an outline style to the selected display's nav button:
@@ -447,5 +463,6 @@ export {
     getCurrentView,
     checkCheckbox,
     uncheckCheckbox,
-    renderAddForm
+    renderAddForm,
+    styleRadioOption
 }

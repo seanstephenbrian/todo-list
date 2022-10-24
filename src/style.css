@@ -50,8 +50,9 @@ time, mark, audio, video {
 	--main-bg: #e1cfae97;
 	--item-bg: #2086ca92;
 	--add-button: #ba8d5e85;
-	--add-form-bg: #ba8d5e85;
-	--form-button: #e0a85b6e;
+	--add-form-bg: #f0d7a9de;
+	--priority-button-default: #c8b5a285;
+	--form-button: #ba8d5e85;
 	--form-input-bg: #F3EEE5;
 }
 
@@ -309,23 +310,33 @@ textarea:focus {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	background-color: var(--priority-button-default);
 }
 
 .now-option {
 	justify-self: center;
-	background-color: var(--now-button);
 	letter-spacing: calc(0.3*var(--rvv));
 	text-indent: calc(0.3*var(--rvv));
 }
 
+.now-option.selected-priority {
+	background-color: var(--now-button);
+	outline: 3px solid var(--all-button);
+}
+
 .later-option {
 	justify-self: center;
-	background-color: var(--later-button);
 	letter-spacing: calc(0.1*var(--rvv));
 	text-indent: calc(0.1*var(--rvv));
 }
 
+.later-option.selected-priority {
+	background-color: var(--later-button);
+	outline: 3px solid var(--all-outline);
+}
+
 .radio-input {
+	display: none;
 	padding: 0;
 	margin: 0;
 	appearance: none;
