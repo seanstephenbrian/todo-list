@@ -26,6 +26,9 @@ import FavIcon from '../img/favicon.png';
 // create currentView variable to track the current page display:
 let currentView;
 
+// create displayMode variable to track light/dark mode:
+let displayMode;
+
 // generate base page structure:
 const renderHeaderFooter = () => {
 
@@ -232,6 +235,11 @@ const renderAddForm = () => {
             const formButtonIcon = document.createElement('img');
             formButtonIcon.setAttribute('src', AddIcon);
             formButton.appendChild(formButtonIcon);
+    
+    // render the add form in dark mode if it's turned on:
+    if (displayMode === 'dark') {
+        switchToDark();
+    }
 
     addFormListeners();
 
@@ -260,6 +268,10 @@ const submitForm = () => {
     } else if (currentView = 'all') {
         renderAll();
     }
+    // and set it to the correct display mode:
+    if (displayMode = 'dark') {
+        switchToDark();
+    }
 
 };
 
@@ -285,6 +297,9 @@ const removeForm = () => {
     form.remove();
     // replace the '+' button which was previously deleted:
     renderAddButton();
+    if (displayMode === 'dark') {
+        switchToDark();
+    }
 }
 
 // apply an outline style to the selected display's nav button:
@@ -413,6 +428,11 @@ const renderItems = (selectedItems) => {
     // render 'add' button at the bottom of the content section:
     renderAddButton();
 
+    // check if display mode is set to dark and switch the page style if necessary:
+    if (displayMode === 'dark') {
+        switchToDark();
+    }
+
     // add click listeners on title text & expand icons of all rendered items:
     addExpandListeners();
 }
@@ -514,6 +534,22 @@ const getCurrentView = () => {
     return currentView;
 }
 
+const switchToDark = () => {
+    const everything = document.querySelectorAll('*');
+    everything.forEach(element => {
+        element.classList.add('dark');
+    });
+    displayMode = 'dark';
+}
+
+const switchToLight = () => {
+    const everything = document.querySelectorAll('*');
+    everything.forEach(element => {
+        element.classList.remove('dark');
+    });
+    displayMode = 'light';
+}
+
 export { 
     renderHeaderFooter, 
     renderNow, 
@@ -528,5 +564,7 @@ export {
     renderAddForm,
     styleRadioOption,
     submitForm,
-    removeForm
+    removeForm,
+    switchToDark,
+    switchToLight
 }

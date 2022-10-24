@@ -2,7 +2,7 @@ import '../style.css';
 
 import { retrieveStoredList } from './list.js';
 
-import { renderHeaderFooter, renderNow } from './page.js';
+import { renderHeaderFooter, renderNow, switchToDark } from './page.js';
 
 import { addInitialListeners } from './listen.js';
 
@@ -13,3 +13,5 @@ addInitialListeners();
 retrieveStoredList();
 
 renderNow();
+
+switchToDark();
