@@ -239,10 +239,8 @@ const submitForm = () => {
         priority = 'now';
     } else if (document.getElementById('later').checked) {
         priority = 'later';
-    } else if (document.getElementById('now').checked === false && document.getElementById('later').checked === false) {
-        priority = 'all';
     }
-
+    
     // add a to-do object to the array using the form values:
     createTodo(title.value, description.value, priority, false);
 

@@ -437,9 +437,8 @@ textarea:not(:focus) {
 }
 
 .item-description {
-	background-color: var(--description-bg);
 	border-radius: 3px;
-	padding: calc(0.1*var(--rvv)) calc(0.5*var(--rvv));
+	font-style: italic;
 	grid-area: description;
 	align-self: flex-start;
 	justify-self: flex-start;
