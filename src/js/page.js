@@ -105,12 +105,16 @@ const renderAddForm = () => {
             const formTitle = document.createElement('div');
             formTitle.classList.add('form-title');
             formItself.appendChild(formTitle);
+            const formTitleText = document.createElement('span');
+            formTitleText.classList.add('form-title-text');
+            formTitleText.textContent = 'add a new task ::';
+            formTitle.appendChild(formTitleText);
 
             // create the form elements:
 
                 // title section:
                 const titleSection = document.createElement('div');
-                titleSection.classList.add('form-element');
+                titleSection.classList.add('form-element', 'title-section');
                 formItself.appendChild(titleSection);
 
                     // title label:
@@ -132,28 +136,32 @@ const renderAddForm = () => {
 
                 // description section:
                 const descriptionSection = document.createElement('div');
-                descriptionSection.classList.add('form-element');
+                descriptionSection.classList.add('form-element', 'description-section');
                 formItself.appendChild(descriptionSection);
 
                     // description label:
                     const descriptionLabel = document.createElement('label');
                     descriptionLabel.setAttribute('for', 'description');
-                    descriptionLabel.textContent = 'description:';
+                    descriptionLabel.textContent = 'description (optional):';
                     descriptionSection.appendChild(descriptionLabel);
 
                     // description input:
-                    const descriptionInput = document.createElement('input');
-                    descriptionInput.setAttribute('type', 'text');
+                    const descriptionInput = document.createElement('textarea');
                     descriptionInput.setAttribute('class', 'description-input');
                     descriptionInput.setAttribute('name', 'description');
                     descriptionInput.setAttribute('id', 'description');
-                    descriptionInput.setAttribute('placeholder', 'example: fill the dog bowl every day at 9am and 6pm');
                     descriptionSection.appendChild(descriptionInput);
 
 
                 // priority fieldset:
                 const fieldset = document.createElement('fieldset');
+                fieldset.classList.add('priority-section');
                 formItself.appendChild(fieldset);
+
+                    // priority label:
+                    const priorityLabel = document.createElement('div');
+                    priorityLabel.textContent = 'priority:';
+                    fieldset.appendChild(priorityLabel);
 
                     // 'NOW' priority radio option:
                     const nowOption = document.createElement('div');
@@ -165,14 +173,14 @@ const renderAddForm = () => {
                         nowInput.classList.add('radio-input');
                         nowInput.setAttribute('type', 'radio');
                         nowInput.setAttribute('id', 'now');
-                        nowInput.setAttribute('name', 'now');
+                        nowInput.setAttribute('name', 'priority');
                         nowInput.setAttribute('value', 'now');
                         nowInput.setAttribute('required', true);
                         nowOption.appendChild(nowInput);
 
                         const nowLabel = document.createElement('label');
                         nowLabel.setAttribute('for', 'now');
-                        nowLabel.textContent = 'NOW';
+                        nowLabel.textContent = 'now';
                         nowOption.appendChild(nowLabel);
 
                     // 'LATER' priority radio option:
@@ -185,15 +193,24 @@ const renderAddForm = () => {
                         laterInput.classList.add('radio-input');
                         laterInput.setAttribute('type', 'radio');
                         laterInput.setAttribute('id', 'later');
-                        laterInput.setAttribute('name', 'later');
+                        laterInput.setAttribute('name', 'priority');
                         laterInput.setAttribute('value', 'later');
                         laterInput.setAttribute('required', true);
                         laterOption.appendChild(laterInput);
 
                         const laterLabel = document.createElement('label');
                         laterLabel.setAttribute('for', 'later');
-                        laterLabel.textContent = 'LATER';
+                        laterLabel.textContent = 'later';
                         laterOption.appendChild(laterLabel);
+
+            // create a new 'add' button at the bottom of the form:
+            const formButton = document.createElement('button');
+            formButton.classList.add('submit-button');
+            formButton.setAttribute('type', 'submit');
+            formItself.appendChild(formButton);
+            const formButtonIcon = document.createElement('img');
+            formButtonIcon.setAttribute('src', AddIcon);
+            formButton.appendChild(formButtonIcon);
 
     // addAddFormListeners();
 
