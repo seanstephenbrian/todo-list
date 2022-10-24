@@ -145,11 +145,7 @@ header {
 }
 
 .selected {
-	outline: 3px solid var(--button-outline);
-}
-
-.selected.selected-all {
-	outline: 3px solid var(--button-outline);
+	box-shadow: 0 0 0 3px var(--button-outline);
 }
 
 .main {
@@ -302,7 +298,9 @@ header {
 
 input:focus,
 textarea:focus {
-	outline: 3px solid var(--input-focus-outline);
+	appearance: none;
+	outline: none;
+	box-shadow: 0 0 0 3px var(--input-focus-outline);
 }
 
 input:not(:focus),
@@ -357,7 +355,7 @@ textarea:not(:focus) {
 
 .now-option.selected-priority {
 	background-color: var(--now-button);
-	outline: 3px solid var(--button-outline);
+	box-shadow: 0 0 0 3px var(--button-outline);
 }
 
 .later-option {
@@ -368,7 +366,7 @@ textarea:not(:focus) {
 
 .later-option.selected-priority {
 	background-color: var(--later-button);
-	outline: 3px solid var(--button-outline);
+	box-shadow: 0 0 0 3px var(--button-outline);
 }
 
 .radio-input {
