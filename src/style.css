@@ -175,6 +175,10 @@ header {
 		". description delete";
 }
 
+.expanded-item .item-title {
+	cursor: auto;
+}
+
 .completed-item {
 	filter: grayscale(70%);
 }
