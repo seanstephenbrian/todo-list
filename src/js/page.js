@@ -190,7 +190,6 @@ const renderAddForm = () => {
                         nowInput.setAttribute('id', 'now');
                         nowInput.setAttribute('name', 'priority');
                         nowInput.setAttribute('value', 'now');
-                        nowInput.setAttribute('required', true);
                         nowOption.appendChild(nowInput);
 
                         const nowLabel = document.createElement('label');
@@ -210,7 +209,6 @@ const renderAddForm = () => {
                         laterInput.setAttribute('id', 'later');
                         laterInput.setAttribute('name', 'priority');
                         laterInput.setAttribute('value', 'later');
-                        laterInput.setAttribute('required', true);
                         laterOption.appendChild(laterInput);
 
                         const laterLabel = document.createElement('label');
@@ -241,6 +239,8 @@ const submitForm = () => {
         priority = 'now';
     } else if (document.getElementById('later').checked) {
         priority = 'later';
+    } else if (document.getElementById('now').checked === false && document.getElementById('later').checked === false) {
+        priority = 'all';
     }
 
     // add a to-do object to the array using the form values:
@@ -349,9 +349,6 @@ const renderItems = (selectedItems) => {
     // empty out main content section:
     main.innerHTML = '';
 
-    // render 'add' button at the top of the content section:
-    renderAddButton();
-
     // create new <div> for each item:
     selectedItems.forEach(item => {
         const displayedItem = document.createElement('div');
@@ -399,6 +396,9 @@ const renderItems = (selectedItems) => {
         // add click listener to checkbox of new item using its id:
         addCheckboxListener(displayedItem.dataset.id);
     });
+
+    // render 'add' button at the bottom of the content section:
+    renderAddButton();
 
     // add click listeners on title text & expand icons of all rendered items:
     addExpandListeners();

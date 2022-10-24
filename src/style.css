@@ -43,12 +43,12 @@ time, mark, audio, video {
 	--now-button: #749c5d;
 	--later-button: #b56c67;
 	--all-button: #e0a95bef;
-	--button-outline: #edbe7c;
+	--button-outline: #f0991fd5;
 	--input-focus-outline: #e5982d;
 	--input-valid-outline:#4D663E;
-	--all-outline: #f0991fd5;
 	--main-bg: #e1cfae97;
 	--item-bg: #2086ca92;
+	--description-bg: #d8f2ff95;
 	--add-button: #ba8d5e85;
 	--add-form-bg: #f0d7a9de;
 	--priority-button-default: #c8b5a285;
@@ -149,7 +149,7 @@ header {
 }
 
 .selected.selected-all {
-	outline: 3px solid var(--all-outline);
+	outline: 3px solid var(--button-outline);
 }
 
 .main {
@@ -357,7 +357,7 @@ textarea:not(:focus) {
 
 .now-option.selected-priority {
 	background-color: var(--now-button);
-	outline: 3px solid var(--all-button);
+	outline: 3px solid var(--button-outline);
 }
 
 .later-option {
@@ -368,7 +368,7 @@ textarea:not(:focus) {
 
 .later-option.selected-priority {
 	background-color: var(--later-button);
-	outline: 3px solid var(--all-outline);
+	outline: 3px solid var(--button-outline);
 }
 
 .radio-input {
@@ -437,9 +437,13 @@ textarea:not(:focus) {
 }
 
 .item-description {
+	background-color: var(--description-bg);
+	border-radius: 3px;
+	padding: calc(0.1*var(--rvv)) calc(0.5*var(--rvv));
 	grid-area: description;
 	align-self: flex-start;
 	justify-self: flex-start;
+	font-size: 80%;
 }
 
 .expanded-item .delete {
@@ -515,7 +519,7 @@ footer {
 	}
 
 	.submit-button:hover {
-		transform: scale(1.075);
+		transform: scale(1.01);
 	}
 
 	.close-button:hover {
