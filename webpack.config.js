@@ -10,7 +10,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'now // later :: a to-do list for everyone',
+            title: 'now // later :: a simple to-do list',
         }),
     ],
     output: {

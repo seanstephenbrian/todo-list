@@ -21,12 +21,20 @@ import ShrinkIcon from '../img/shrink.svg';
 import DeleteIcon from '../img/delete.svg';
 import AddIcon from '../img/add.svg';
 import CloseIcon from '../img/close.svg';
+import FavIcon from '../img/favicon.png';
 
 // create currentView variable to track the current page display:
 let currentView;
 
 // generate base page structure:
 const renderHeaderFooter = () => {
+
+    // // add favicon:
+    const head = document.querySelector('head');
+    const favIcon = document.createElement('link');
+    favIcon.setAttribute('rel', 'icon');
+    favIcon.setAttribute('href', FavIcon);
+    head.appendChild(favIcon);
 
     // create header:
     const header = document.createElement('header');

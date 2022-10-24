@@ -115,6 +115,7 @@ header {
 }
 
 .nav div {
+	font-size: calc(0.6*var(--rvv));
 	cursor: pointer;
 	width: calc(3*var(--rvv));
 	height: calc(var(--rvv));
