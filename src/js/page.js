@@ -352,6 +352,13 @@ const renderItems = (selectedItems) => {
         const displayedItem = document.createElement('div');
         displayedItem.classList.add('displayed-item');
 
+        // add class for item priority:
+        if (item.priority === 'now') {
+            displayedItem.classList.add('now-item');
+        } else if (item.priority === 'later') {
+            displayedItem.classList.add('later-item')
+        }
+
         // set dataset.id to item's index in the main array:
         displayedItem.dataset.id = allItems.indexOf(item);
 
@@ -413,7 +420,6 @@ const uncheckCheckbox = (checkboxDiv) => {
 }
 
 const expandItem = (e) => {
-    alert('expandItem fired');
 
     // first, create reference to clicked element to help us determine the item to expand:
     const clickedElement = e.target;

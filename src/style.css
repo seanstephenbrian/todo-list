@@ -48,6 +48,8 @@ time, mark, audio, video {
 	--input-valid-outline:#4D663E;
 	--main-bg: #e1cfae97;
 	--item-bg: #2086ca92;
+	--now-item-bg: #629c407c;
+	--later-item-bg: #da8680c1;
 	--description-bg: #d8f2ff95;
 	--add-button: #ba8d5e85;
 	--add-form-bg: #f0d7a9de;
@@ -173,6 +175,14 @@ header {
 	grid-template-rows: 1fr;
 	grid-template-areas: "checkbox title expand";
 	background-color: var(--item-bg);
+}
+
+.displayed-item.now-item {
+	background-color: var(--now-item-bg);
+}
+
+.displayed-item.later-item {
+	background-color: var(--later-item-bg);
 }
 
 .expanded-item {
