@@ -1,4 +1,4 @@
-import { setBody, setBodyHeight, setBodyWidth } from './body.js';
+import { checkForLandscape, setBody } from './body.js';
 import { 
     renderNow, 
     renderLater, 
@@ -24,8 +24,11 @@ const addInitialListeners = () => {
     // set initial body height & width..
     setBody();
 
-    // then adjust body height & width if needed whenever the window is resized:
+    // then adjust body height & width if needed whenever the window is resized, or when the screen orientation changes:
     window.addEventListener('resize', setBody);
+    window.addEventListener('resize', checkForLandscape);
+    screen.orientation.addEventListener('change', setBody);
+    screen.orientation.addEventListener('change', checkForLandscape);
 
     // add click listeners to nav buttons to trigger render functions:
     const now = document.querySelector('.now');

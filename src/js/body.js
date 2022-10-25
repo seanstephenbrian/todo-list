@@ -12,9 +12,16 @@ const setBodyWidth = () => {
     document.body.style.maxWidth = window.innerWidth + "px";
 };
 
+// workaround to check for safari landscape orientation:
+const checkForLandscape = () => {
+    if (window.innerWidth > window.innerHeight) {
+        setBody();
+    }
+}
+
 const setBody = () => {
     setBodyHeight();
     setBodyWidth();
 };
 
-export { setBodyHeight, setBodyWidth, setBody };
+export { setBodyHeight, setBodyWidth, setBody, checkForLandscape };

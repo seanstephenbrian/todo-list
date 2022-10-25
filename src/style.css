@@ -129,6 +129,7 @@ header {
 }
 
 .title-text {
+	text-align: center;
 	font-family: 'Sublima';
 	font-size: calc(0.45*var(--rvv));
 	letter-spacing: calc(0.1*var(--rvv));

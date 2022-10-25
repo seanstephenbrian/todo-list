@@ -316,7 +316,7 @@ const styleRadioOption = (e) => {
     buttonToSelect.classList.add('selected-priority');
 }
 
-// removes the 'add a new task' from from DOM:
+// removes the 'add a new task' form from DOM:
 const removeForm = () => {
     const form = document.querySelector('.add-form');
     form.remove();
