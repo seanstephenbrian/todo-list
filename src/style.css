@@ -279,8 +279,13 @@ header {
 .completed-item .item-title {
 	font-style: italic;
 	text-decoration: underline calc(0.04*var(--rvv)) black;
+	--webkit-text-decoration-line: underline;
+	--webkit-text-decoration-thickness: calc(0.04*var(--rvv));
+	--webkit-text-decoration-color: black;
 	text-decoration-skip-ink: none;
+	--webkit-text-decoration-skip-ink: none;
 	text-underline-offset: calc(-0.2*var(--rvv));
+	--webkit-text-underline-offset: calc(-0.2*var(--rvv));
 }
 
 .completed-item .item-description {
