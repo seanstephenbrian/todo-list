@@ -53,6 +53,7 @@ time, mark, audio, video {
 	--description-bg: #d8f2ff95;
 	--add-item-button: #ba8d5e85;
 	--add-form-bg: #f0d7a9de;
+	--edit-form-bg: #f0d7a9;
 	--priority-button-default: #c8b5a285;
 	--form-button: #ba8d5e85;
 	--form-input-bg: #F3EEE5;
@@ -220,6 +221,7 @@ header {
 }
 
 .main {
+	position: relative;
 	flex: auto;
 	display: flex;
 	flex-direction: column;
@@ -322,8 +324,21 @@ header {
 		"submit-button";
 }
 
+.edit-backdrop {
+	z-index: 2;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	backdrop-filter: blur(5px);
+}
+
 .edit-form-itself {
-	background-color: var(--add-form-bg);
+	position: fixed;
+	z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	background-color: var(--edit-form-bg);
 	width: 90vw;
 	max-width: calc(15*var(--rvv));
 	position: relative;
@@ -332,7 +347,6 @@ header {
 	padding: calc(0.1*var(--rvv)) calc(0.3*var(--rvv));
 	border: 1px solid black;
 	border-radius: calc(0.8*var(--rvv));
-	margin: 0 calc(0.7*var(--rvv));
 }
 
 .form-title {
@@ -353,6 +367,7 @@ header {
 }
 
 .close-button {
+	cursor: pointer;
 	background-color: var(--close-button);
 	margin-left: auto;
 	border: 1px solid black;
@@ -639,6 +654,10 @@ body.dark {
 }
 
 .displayed-item.add-form.dark {
+	background-color: var(--dark-add-form-bg);
+}
+
+.edit-form-itself.dark {
 	background-color: var(--dark-add-form-bg);
 }
 

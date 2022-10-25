@@ -1,15 +1,18 @@
 import SaveIcon from '../img/save.svg';
 import CloseIcon from '../img/close.svg';
 import { getAll } from './list.js';
-import { 
-    displayMode,
-    styleRadioOption } from './page.js';
+import { displayMode } from './page.js';
 import { addEditFormListeners } from './listen';
 
 const renderEditForm = (index) => {
 
     const list = getAll();
     const item = list[index];
+
+    // create overlay for blur backdrop filter:
+    const editBackdrop = document.createElement('div');
+    editBackdrop.classList.add('edit-backdrop');
+    document.body.appendChild(editBackdrop);
 
     // create edit form container:
     const editForm = document.createElement('div');
@@ -32,7 +35,7 @@ const renderEditForm = (index) => {
             formItself.appendChild(formTitle);
             const formTitleText = document.createElement('span');
             formTitleText.classList.add('form-title-text', 'edit-form-title-text');
-            formTitleText.textContent = 'edit your task:';
+            formTitleText.textContent = `editing '${item.title}'`;
             formTitle.appendChild(formTitleText);
 
             // create an 'X' button to close out of the form:

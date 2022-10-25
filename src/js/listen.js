@@ -153,7 +153,7 @@ const addCheckboxListener = (id) => {
 // edit icon listener to add to each item as it is rendered:
 const addEditIconListener = (id) => {
     const itemToEdit = document.querySelector(`[data-id='${id}'`);
-    const editIcon = itemToEdit.children[2];
+    const editIcon = itemToEdit.children[2].firstChild;
     editIcon.addEventListener('click', showEditPopup);
 }
 

@@ -332,6 +332,8 @@ const submitEditForm = (e) => {
     editTodo(index, 'description', description.value);
     editTodo(index, 'priority', priority);
 
+    removeEditBackdrop();
+
     // re-render the current page view:
     if (currentView = 'now') {
         renderNow();
@@ -378,6 +380,12 @@ const removeForm = () => {
 const removeEditForm = () => {
     const form = document.querySelector('.edit-form');
     form.remove();
+    removeEditBackdrop();
+}
+
+const removeEditBackdrop = () => {
+    const editBackdrop = document.querySelector('.edit-backdrop');
+    editBackdrop.remove();
 }
 
 // apply an outline style to the selected display's nav button:
