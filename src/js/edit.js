@@ -1,7 +1,9 @@
 import SaveIcon from '../img/save.svg';
 import CloseIcon from '../img/close.svg';
 import { getAll } from './list.js';
-import { displayMode } from './page.js';
+import { 
+    displayMode,
+    switchToDark } from './page.js';
 import { addEditFormListeners } from './listen';
 
 const renderEditForm = (index) => {
