@@ -718,3 +718,10 @@ footer.dark {
 	}
 
 }
+
+@media screen and (orientation: landscape) {
+	body {
+		min-height: 100vh;
+		min-width: 100vw;
+	}
+}
