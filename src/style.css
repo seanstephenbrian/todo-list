@@ -156,6 +156,21 @@ header {
 	width: 80%;
 }
 
+.selected-display.light-mode,
+.selected-display.dark-mode {
+	transition: 0.25s linear;
+}
+
+.selected-display.light-mode img {
+	filter: drop-shadow(0 0 5px var(--red));
+	transform: scale(1.2);
+}
+
+.selected-display.dark-mode img {
+	filter: drop-shadow(0 0 5px black);
+	transform: scale(1.2);
+}
+
 .nav {
 	flex: 2;
 	display: flex;

@@ -1,4 +1,4 @@
-import { setBodyHeight, setBodyWidth } from './body.js';
+import { setBody, setBodyHeight, setBodyWidth } from './body.js';
 import { 
     renderNow, 
     renderLater, 
@@ -13,50 +13,44 @@ import {
     submitForm,
     removeForm, 
     switchToLight,
-    switchToDark} from './page.js';
+    switchToDark,
+    styleLightIcon,
+    styleDarkIcon} from './page.js';
 import { deleteTodo, editTodo, getCompleted } from './list.js';
 
 // event listeners to add when the page first loads:
 const addInitialListeners = () => {
 
     // set initial body height & width..
-    setBodyHeight();
-    setBodyWidth();
+    setBody();
+
     // then adjust body height & width if needed whenever the window is resized:
-    window.addEventListener('resize', () => {
-        setBodyHeight();
-        setBodyWidth();
-    });
+    window.addEventListener('resize', setBody);
 
     // add click listeners to nav buttons to trigger render functions:
     const now = document.querySelector('.now');
-    now.addEventListener('click', () => {
-        renderNow();
-    });
+    now.addEventListener('click', renderNow);
 
     const later = document.querySelector('.later');
-    later.addEventListener('click', () => {
-        renderLater();
-    });
+    later.addEventListener('click', renderLater);
 
     const all = document.querySelector('.all');
-    all.addEventListener('click', () => {
-        renderAll();
-    });
+    all.addEventListener('click', renderAll);
 
     // add listeners to light/dark mode display icons:
     const lightIcon = document.querySelector('.light-mode');
     lightIcon.addEventListener('click', switchToLight);
+    lightIcon.addEventListener('click', styleLightIcon);
 
     const darkIcon = document.querySelector('.dark-mode');
     darkIcon.addEventListener('click', switchToDark);
+    darkIcon.addEventListener('click', styleDarkIcon);
+
 }
 
 const addAddListener = () => {
     const addButton = document.querySelector('.add-item-button');
-    addButton.addEventListener('click', () => {
-        renderAddForm();
-    });
+    addButton.addEventListener('click', renderAddForm);
 }
 
 const addFormListeners = () => {

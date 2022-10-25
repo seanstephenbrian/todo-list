@@ -566,12 +566,36 @@ const switchToDark = () => {
     displayMode = 'dark';
 }
 
+const styleDarkIcon = () => {
+    // check that dark mode is selected:
+    if (displayMode === 'dark') {
+        // remove selection from light mode icon:
+        const lightIcon = document.querySelector('.light-mode');
+        lightIcon.classList.remove('selected-display');
+        // mark dark mode icon as selected:
+        const darkIcon = document.querySelector('.dark-mode');
+        darkIcon.classList.add('selected-display');
+    }
+}
+
 const switchToLight = () => {
     const everything = document.querySelectorAll('*');
     everything.forEach(element => {
         element.classList.remove('dark');
     });
     displayMode = 'light';
+}
+
+const styleLightIcon = () => {
+    // check that light mode is selected:
+    if (displayMode === 'light') {
+        // remove selection from dark mode icon:
+        const darkIcon = document.querySelector('.dark-mode');
+        darkIcon.classList.remove('selected-display');
+        // mark light mode icon as selected:
+        const lightIcon = document.querySelector('.light-mode');
+        lightIcon.classList.add('selected-display');
+    }
 }
 
 export { 
@@ -590,5 +614,7 @@ export {
     submitForm,
     removeForm,
     switchToDark,
-    switchToLight
+    switchToLight,
+    styleDarkIcon,
+    styleLightIcon
 }

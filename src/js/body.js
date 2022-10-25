@@ -12,4 +12,9 @@ const setBodyWidth = () => {
     document.body.style.maxWidth = window.innerWidth + "px";
 };
 
-export { setBodyHeight, setBodyWidth };
+const setBody = () => {
+    setBodyHeight();
+    setBodyWidth();
+};
+
+export { setBodyHeight, setBodyWidth, setBody };
