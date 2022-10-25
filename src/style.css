@@ -769,7 +769,8 @@ footer.dark {
 }
 
 @media only screen and (max-width: 750px) {
-	.completed-item .item-title {
+	.completed-item .item-title,
+	.completed-item .item-title.dark {
 		font-style: italic;
 		text-decoration: line-through;
 		text-decoration-skip-ink: none;
