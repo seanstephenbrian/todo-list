@@ -611,7 +611,9 @@ body.dark {
 }
 
 .completed-item .item-title.dark {
-	text-decoration: underline calc(0.04*var(--rvv)) var(--dark-border);
+	filter: brightness(80%);
+	text-decoration: underline calc(0.04*var(--rvv)) var(--dark-text);
+	text-decoration-skip-ink: none;
 }
 
 .displayed-item.add-form.dark {
