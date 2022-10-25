@@ -11,7 +11,9 @@ import {
     renderAddForm,
     styleRadioOption,
     submitForm,
-    removeForm } from './page.js';
+    removeForm, 
+    switchToLight,
+    switchToDark} from './page.js';
 import { deleteTodo, editTodo, getCompleted } from './list.js';
 
 // event listeners to add when the page first loads:
@@ -41,6 +43,13 @@ const addInitialListeners = () => {
     all.addEventListener('click', () => {
         renderAll();
     });
+
+    // add listeners to light/dark mode display icons:
+    const lightIcon = document.querySelector('.light-mode');
+    lightIcon.addEventListener('click', switchToLight);
+
+    const darkIcon = document.querySelector('.dark-mode');
+    darkIcon.addEventListener('click', switchToDark);
 }
 
 const addAddListener = () => {

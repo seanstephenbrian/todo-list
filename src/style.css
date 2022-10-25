@@ -137,11 +137,17 @@ header {
 
 .light-mode,
 .dark-mode {
+	cursor: pointer;
 	height: var(--display-icon);
 	width: var(--display-icon);
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.light-mode.dark,
+.dark-mode.dark {
+	filter: invert(80%);
 }
 
 .light-mode img,
