@@ -79,7 +79,7 @@ const addFormListeners = () => {
 const addExpandListeners = () => {
 
     // add listeners to all item title text:
-    const itemTitles = document.querySelectorAll('.item-title');
+    const itemTitles = document.querySelectorAll('.expandable-title');
     itemTitles.forEach(title => {
         title.addEventListener('click', expandItem);
     });
@@ -115,6 +115,22 @@ const addCheckboxListener = (id) => {
             parentItem.classList.add('incomplete-item');
             // and uncheck the box:
             uncheckCheckbox(itemCheckbox);
+        }
+    });
+}
+
+const addDeleteListenerToItemWithoutDescription = (deleteIcon, id) => {
+    deleteIcon.addEventListener('click', () => {
+        // delete item:
+        deleteTodo(id);
+        // then check the user's current page before re-rendering:
+        const currentView = getCurrentView();
+        if (currentView === 'now') {
+            renderNow();
+        } else if (currentView === 'later') {
+            renderLater();
+        } else if (currentView === 'all') {
+            renderAll();
         }
     });
 }
@@ -168,5 +184,6 @@ export {
     addCheckboxListener,
     replaceExpandListener,
     addAddListener,
-    addFormListeners
+    addFormListeners,
+    addDeleteListenerToItemWithoutDescription
 }

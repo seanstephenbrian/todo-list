@@ -12,7 +12,8 @@ import {
     addCheckboxListener,
     replaceExpandListener,
     addAddListener,
-    addFormListeners } from './listen.js';
+    addFormListeners, 
+    addDeleteListenerToItemWithoutDescription} from './listen.js';
 
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
@@ -293,7 +294,7 @@ const submitForm = () => {
         renderAll();
     }
     // and set it to the correct display mode:
-    if (displayMode = 'dark') {
+    if (displayMode === 'dark') {
         switchToDark();
     }
 
@@ -431,19 +432,38 @@ const renderItems = (selectedItems) => {
             // create <div>s for item title text:
             const title = document.createElement('div');
             title.textContent = item.title;
-            title.classList.add('item-title');
+            // if the item has a description, make the title expandable:
+            if (item.description) {
+                title.classList.add('item-title', 'expandable-title');
+            } else if (!item.description) {
+                title.classList.add('item-title');
+            }
             displayedItem.appendChild(title);
 
-            // create <div>s for expand icons:
-            const expand = document.createElement('div');
-            expand.classList.add('expand');
-            const expandIcon = document.createElement('img');
-            expandIcon.setAttribute('src', ExpandIcon);
-            expand.appendChild(expandIcon);
-            displayedItem.appendChild(expand);
+            // if there is a description, create <div>s for expand icons:
+            if (item.description) {
+                const expand = document.createElement('div');
+                expand.classList.add('expand');
+                const expandIcon = document.createElement('img');
+                expandIcon.setAttribute('src', ExpandIcon);
+                expand.appendChild(expandIcon);
+                displayedItem.appendChild(expand);
+            // if there's no item description, add the delete icon instead of the expand icon:
+            } else if (!item.description) {
+                const deleteIcon = document.createElement('div');
+                deleteIcon.classList.add('delete');
+                const deleteIconSvg = document.createElement('img');
+                deleteIconSvg.setAttribute('src', DeleteIcon);
+                deleteIcon.appendChild(deleteIconSvg);
+                displayedItem.appendChild(deleteIcon);
+                addDeleteListenerToItemWithoutDescription(deleteIcon, displayedItem.dataset.id);
+            }
+            
 
         // add item <div> to the main content section:
         main.appendChild(displayedItem);
+
+
 
         // add click listener to checkbox of new item using its id:
         addCheckboxListener(displayedItem.dataset.id);

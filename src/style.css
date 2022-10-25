@@ -256,10 +256,15 @@ header {
 .expanded-item {
 	display: grid;
 	grid-template-columns: calc(1.4*var(--rvv)) 1fr calc(var(--rvv));
-	grid-template-rows: 1fr 3fr;
+	grid-template-rows: calc(1.2*var(--rvv)) 1fr;
 	grid-template-areas: 
 		"checkbox title expand"
 		". description delete";
+}
+
+.expanded-item .item-description {
+	margin-right: calc(0.3*var(--rvv));
+	margin-bottom: calc(0.3*var(--rvv));
 }
 
 .expanded-item .item-title {
@@ -492,11 +497,14 @@ textarea:not(:focus) {
 }
 
 .item-title {
-	cursor: pointer;
 	position: relative;
 	bottom: 2px;
 	grid-area: title;
 	justify-self: start;
+}
+
+.expandable-title {
+	cursor: pointer;
 }
 
 .expand {
