@@ -15,7 +15,10 @@ import {
     switchToLight,
     switchToDark,
     styleLightIcon,
-    styleDarkIcon} from './page.js';
+    styleDarkIcon,
+    showEditPopup,
+    submitEditForm,
+    removeEditForm } from './page.js';
 import { deleteTodo, editTodo, getCompleted } from './list.js';
 
 // event listeners to add when the page first loads:
@@ -81,6 +84,28 @@ const addFormListeners = () => {
     });
 }
 
+const addEditFormListeners = () => {
+
+    // add close button listener:
+    const closeButton = document.querySelector('.edit-close-button');
+    closeButton.addEventListener('click', removeEditForm);
+
+    // add radio input listeners:
+    const radioInputs = document.querySelectorAll('.radio-input');
+    radioInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+            styleRadioOption(e);
+        });
+    });
+
+    // add submit listener:
+    const form = document.querySelector('.edit-form-itself');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitEditForm(e);
+    });
+}
+
 // event listeners to open expanded view of items:
 const addExpandListeners = () => {
 
@@ -123,6 +148,13 @@ const addCheckboxListener = (id) => {
             uncheckCheckbox(itemCheckbox);
         }
     });
+}
+
+// edit icon listener to add to each item as it is rendered:
+const addEditIconListener = (id) => {
+    const itemToEdit = document.querySelector(`[data-id='${id}'`);
+    const editIcon = itemToEdit.children[2];
+    editIcon.addEventListener('click', showEditPopup);
 }
 
 const addDeleteListenerToItemWithoutDescription = (deleteIcon, id) => {
@@ -190,6 +222,8 @@ export {
     addCheckboxListener,
     replaceExpandListener,
     addAddListener,
+    addEditFormListeners,
     addFormListeners,
-    addDeleteListenerToItemWithoutDescription
+    addDeleteListenerToItemWithoutDescription,
+    addEditIconListener
 }

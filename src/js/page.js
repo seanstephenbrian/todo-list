@@ -3,7 +3,8 @@ import {
     getNow, 
     getLater, 
     getDescription,
-    createTodo } from './list.js';
+    createTodo, 
+    editTodo} from './list.js';
 
 import { 
     addExpandListeners, 
@@ -13,7 +14,10 @@ import {
     replaceExpandListener,
     addAddListener,
     addFormListeners, 
-    addDeleteListenerToItemWithoutDescription} from './listen.js';
+    addDeleteListenerToItemWithoutDescription,
+    addEditIconListener} from './listen.js';
+
+import { renderEditForm } from './edit.js';
 
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
@@ -29,6 +33,14 @@ import EditIcon from '../img/edit.svg';
 
 // create currentView variable to track the current page display:
 let currentView;
+
+const updateCurrentView = (page) => {
+    currentView = page;
+}
+
+const getCurrentView = () => {
+    return currentView;
+}
 
 // create displayMode variable to track light/dark mode:
 let displayMode;
@@ -300,6 +312,42 @@ const submitForm = () => {
 
 };
 
+
+const submitEditForm = (e) => {
+
+    const index = e.target.dataset.id;
+    console.log(index);
+
+    // get form values:
+    const title = document.querySelector('.edit-title-input');
+    const description = document.querySelector('.edit-description-input');
+    let priority;
+    if (document.getElementById('now').checked) {
+        priority = 'now';
+    } else if (document.getElementById('later').checked) {
+        priority = 'later';
+    }
+
+    editTodo(index, 'title', title.value);
+    editTodo(index, 'description', description.value);
+    editTodo(index, 'priority', priority);
+
+    // re-render the current page view:
+    if (currentView = 'now') {
+        renderNow();
+    } else if (currentView = 'later') {
+        renderLater();
+    } else if (currentView = 'all') {
+        renderAll();
+    }
+
+    // and set it to the correct display mode:
+    if (displayMode === 'dark') {
+        switchToDark();
+    }
+
+}
+
 // changes background color and outline for radio options depending on selection:
 const styleRadioOption = (e) => {
     // select the priority button we want to style:
@@ -325,6 +373,11 @@ const removeForm = () => {
     if (displayMode === 'dark') {
         switchToDark();
     }
+}
+
+const removeEditForm = () => {
+    const form = document.querySelector('.edit-form');
+    form.remove();
 }
 
 // apply an outline style to the selected display's nav button:
@@ -472,6 +525,9 @@ const renderItems = (selectedItems) => {
 
         // add click listener to checkbox of new item using its id:
         addCheckboxListener(displayedItem.dataset.id);
+
+        // add click listener toe dit icon of new item using its id:
+        addEditIconListener(displayedItem.dataset.id);
     });
 
     // render 'add' button at the bottom of the content section:
@@ -485,7 +541,6 @@ const renderItems = (selectedItems) => {
     // add click listeners on title text & expand icons of all rendered items:
     addExpandListeners();
 
-    // add edit listeners:
 }
 
 const checkCheckbox = (checkboxDiv) => {
@@ -496,6 +551,13 @@ const checkCheckbox = (checkboxDiv) => {
 const uncheckCheckbox = (checkboxDiv) => {
     const checkboxIcon = checkboxDiv.firstChild;
     checkboxIcon.setAttribute('src', EmptyCheckboxIcon);
+}
+
+const showEditPopup = (e) => {
+    const itemToEdit = e.target.parentElement.parentElement;
+    const index = itemToEdit.dataset.id;
+    renderEditForm(index);
+    
 }
 
 const expandItem = (e) => {
@@ -577,14 +639,6 @@ const shrinkItem = (e) => {
 
 }
 
-const updateCurrentView = (page) => {
-    currentView = page;
-}
-
-const getCurrentView = () => {
-    return currentView;
-}
-
 const switchToDark = () => {
     const everything = document.querySelectorAll('*');
     everything.forEach(element => {
@@ -639,9 +693,13 @@ export {
     renderAddForm,
     styleRadioOption,
     submitForm,
+    submitEditForm,
     removeForm,
+    removeEditForm,
     switchToDark,
     switchToLight,
     styleDarkIcon,
-    styleLightIcon
+    styleLightIcon,
+    showEditPopup,
+    displayMode
 }

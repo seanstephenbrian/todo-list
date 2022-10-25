@@ -309,7 +309,8 @@ header {
 	background-color: var(--add-form-bg);
 }
 
-.add-form-itself {
+.add-form-itself,
+.edit-form-itself {
 	display: grid;
 	grid-template-rows: calc(1.7*var(--rvv)) calc(var(--rvv)) calc(4*var(--rvv)) calc(var(--rvv)) calc(2.2*var(--rvv));
 	row-gap: calc(0.25*var(--rvv));
@@ -319,6 +320,19 @@ header {
 		"description-section"
 		"priority-section"
 		"submit-button";
+}
+
+.edit-form-itself {
+	background-color: var(--add-form-bg);
+	width: 90vw;
+	max-width: calc(15*var(--rvv));
+	position: relative;
+	font-family: 'Sublima';
+	font-size: calc(0.6*var(--rvv));
+	padding: calc(0.1*var(--rvv)) calc(0.3*var(--rvv));
+	border: 1px solid black;
+	border-radius: calc(0.8*var(--rvv));
+	margin: 0 calc(0.7*var(--rvv));
 }
 
 .form-title {
