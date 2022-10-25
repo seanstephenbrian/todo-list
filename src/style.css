@@ -240,9 +240,9 @@ header {
 	border-radius: calc(0.8*var(--rvv));
 	margin: 0 calc(0.7*var(--rvv));
 	display: grid;
-	grid-template-columns: calc(1.4*var(--rvv)) 1fr calc(var(--rvv));
+	grid-template-columns: calc(1.4*var(--rvv)) 1fr calc(var(--rvv)) calc(var(--rvv));
 	grid-template-rows: 1fr;
-	grid-template-areas: "checkbox title expand";
+	grid-template-areas: "checkbox title edit expand";
 	background-color: var(--item-bg);
 }
 
@@ -256,11 +256,11 @@ header {
 
 .expanded-item {
 	display: grid;
-	grid-template-columns: calc(1.4*var(--rvv)) 1fr calc(var(--rvv));
+	grid-template-columns: calc(1.4*var(--rvv)) 1fr calc(var(--rvv)) calc(var(--rvv));
 	grid-template-rows: calc(1.2*var(--rvv)) 1fr;
 	grid-template-areas: 
-		"checkbox title expand"
-		". description delete";
+		"checkbox title edit expand"
+		". description . delete";
 }
 
 .expanded-item .item-description {
@@ -492,6 +492,10 @@ textarea:not(:focus) {
 	width: calc(var(--rvv));
 }
 
+.edit img {
+	width: calc(0.8*var(--rvv));
+}
+
 .checkbox {
 	grid-area: checkbox;
 	margin-left: calc(0.2*var(--rvv));
@@ -506,6 +510,10 @@ textarea:not(:focus) {
 
 .expandable-title {
 	cursor: pointer;
+}
+
+.edit {
+	grid-area: edit;
 }
 
 .expand {
@@ -677,6 +685,7 @@ footer.dark {
 	}
 
 	.checkbox,
+	.edit,
 	.expand,
 	.shrink,
 	.delete,
@@ -689,6 +698,10 @@ footer.dark {
 
 	.checkbox:hover {
 		transform: scale(1.075);
+	}
+
+	.edit:hover {
+		transform: scale(1.1);
 	}
 
 	.expand:hover {

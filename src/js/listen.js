@@ -162,7 +162,7 @@ const addListenersToExpandedItem = (id) => {
     });
 
     // add listener to shrink icon:
-    const icon = parentItem.children[2];
+    const icon = parentItem.children[3];
     icon.addEventListener('click', (e) => {
         shrinkItem(e);
     });

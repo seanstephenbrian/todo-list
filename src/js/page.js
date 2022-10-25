@@ -25,6 +25,7 @@ import CloseIcon from '../img/close.svg';
 import FavIcon from '../img/favicon.png';
 import DarkIcon from '../img/dark.svg';
 import LightIcon from '../img/light.svg';
+import EditIcon from '../img/edit.svg';
 
 // create currentView variable to track the current page display:
 let currentView;
@@ -438,7 +439,15 @@ const renderItems = (selectedItems) => {
             }
             displayedItem.appendChild(title);
 
-            // if there is a description, create <div>s for expand icons:
+            // create edit icons:
+            const edit = document.createElement('div');
+            edit.classList.add('edit');
+            const editIcon = document.createElement('img');
+            editIcon.setAttribute('src', EditIcon);
+            edit.appendChild(editIcon);
+            displayedItem.appendChild(edit);
+
+            // if there is a description, create expand icons:
             if (item.description) {
                 const expand = document.createElement('div');
                 expand.classList.add('expand');
@@ -461,8 +470,6 @@ const renderItems = (selectedItems) => {
         // add item <div> to the main content section:
         main.appendChild(displayedItem);
 
-
-
         // add click listener to checkbox of new item using its id:
         addCheckboxListener(displayedItem.dataset.id);
     });
@@ -477,6 +484,8 @@ const renderItems = (selectedItems) => {
 
     // add click listeners on title text & expand icons of all rendered items:
     addExpandListeners();
+
+    // add edit listeners:
 }
 
 const checkCheckbox = (checkboxDiv) => {
@@ -506,8 +515,8 @@ const expandItem = (e) => {
     // save reference to itemToExpand's data-id:
     const itemId = itemToExpand.dataset.id;
 
-    // grab reference to expand icon, add a new shrink icon before it, and delete the expand icon:
-    const expand = itemToExpand.children[2];
+    // get reference to expand icon, add a new shrink icon before it, and delete the expand icon:
+    const expand = itemToExpand.children[3];
     const shrink = document.createElement('div');
     shrink.classList.add('shrink');
     const shrinkIcon = document.createElement('img');
@@ -544,7 +553,7 @@ const shrinkItem = (e) => {
     itemToShrink.classList.remove('expanded-item');
 
     // get reference to shrink icon, add a new expand icon before it, then delete the shrink icon:
-    const shrink = itemToShrink.children[2];
+    const shrink = itemToShrink.children[3];
     const expand = document.createElement('div');
     expand.classList.add('expand');
     const expandIcon = document.createElement('img');
@@ -554,11 +563,11 @@ const shrinkItem = (e) => {
     shrink.remove();
 
     // select expanded item description, then delete it:
-    const itemDescription = itemToShrink.children[3];
+    const itemDescription = itemToShrink.children[4];
     itemDescription.remove();
 
     // select delete icon <div>, then delete it:
-    const deleteIcon = itemToShrink.children[3];
+    const deleteIcon = itemToShrink.children[4];
     deleteIcon.remove();
 
     const itemTitle = itemToShrink.children[1];
