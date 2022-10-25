@@ -721,6 +721,15 @@ footer.dark {
 
 }
 
+@media only screen and (max-width: 750px) {
+	.completed-item .item-title {
+		font-style: italic;
+		text-decoration: line-through;
+		text-decoration-skip-ink: none;
+		text-underline-offset: 0;
+	}
+}
+
 @media screen and (orientation: landscape) {
 	body {
 		min-height: 100vh;

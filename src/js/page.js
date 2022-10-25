@@ -34,7 +34,6 @@ let displayMode;
 
 // generate base page structure:
 const renderHeaderFooter = () => {
-
     // // add favicon:
     const head = document.querySelector('head');
     const favIcon = document.createElement('link');
@@ -348,7 +347,6 @@ const outlineNavButton = (page) => {
 }
 
 const renderNow = () => {
-
     // outline the 'now' button:
     outlineNavButton('now');
 
