@@ -406,44 +406,6 @@ const outlineNavButton = (page) => {
     }
 }
 
-const renderNow = () => {
-    // outline the 'now' button:
-    outlineNavButton('now');
-
-    // create array of only items with a 'now' priority:
-    const nowItems = getNow();
-
-    renderItems(nowItems);
-
-    updateCurrentView('now');
-}
-
-const renderLater = () => {
-    
-    // outline the 'later' button:
-    outlineNavButton('later');
-
-    // create array of only items with a 'later' priority:
-    const laterItems = getLater();
-
-    renderItems(laterItems);
-
-    updateCurrentView('later');
-}
-
-const renderAll = () => {
-
-    // outline the 'all' button:
-    outlineNavButton('all');
-
-    // create an array of all current items:
-    const allItems = getAll();
- 
-    renderItems(allItems);
-
-    updateCurrentView('all');
-}
-
 const renderItems = (selectedItems) => {
 
     // create reference to main content section and current complete to-do list:
@@ -546,8 +508,63 @@ const renderItems = (selectedItems) => {
 
     // add click listeners on title text & expand icons of all rendered items:
     addExpandListeners();
-
 }
+
+const renderNow = () => {
+    // outline the 'now' button:
+    outlineNavButton('now');
+
+    // create array of only items with a 'now' priority:
+    const nowItems = getNow();
+
+    renderItems(nowItems);
+
+    updateCurrentView('now');
+
+    localStorage.setItem('currentView', 'now');
+}
+
+const renderLater = () => {
+    
+    // outline the 'later' button:
+    outlineNavButton('later');
+
+    // create array of only items with a 'later' priority:
+    const laterItems = getLater();
+
+    renderItems(laterItems);
+
+    updateCurrentView('later');
+
+    localStorage.setItem('currentView', 'later');
+}
+
+const renderAll = () => {
+
+    // outline the 'all' button:
+    outlineNavButton('all');
+
+    // create an array of all current items:
+    const allItems = getAll();
+ 
+    renderItems(allItems);
+
+    updateCurrentView('all');
+
+    localStorage.setItem('currentView', 'all');
+}
+
+const renderStoredView = () => {
+    const storedView = localStorage.getItem('currentView');
+    if (storedView === 'now') {
+        renderNow();
+    } else if (storedView === 'later') {
+        renderLater();
+    } else if (storedView === 'all') {
+        renderAll();
+    }
+}
+
 
 const checkCheckbox = (checkboxDiv) => {
     const checkboxIcon = checkboxDiv.firstChild;
@@ -650,6 +667,7 @@ const switchToDark = () => {
         element.classList.add('dark');
     });
     displayMode = 'dark';
+    localStorage.setItem('displayMode', 'dark');
 }
 
 const styleDarkIcon = () => {
@@ -670,6 +688,16 @@ const switchToLight = () => {
         element.classList.remove('dark');
     });
     displayMode = 'light';
+    localStorage.setItem('displayMode', 'light');
+}
+
+const retrieveStoredDisplayMode = () => {
+    const displayMode = localStorage.getItem('displayMode');
+    if (displayMode === 'dark') {
+        switchToDark();
+    } else if (displayMode === 'light') {
+        switchToLight();
+    }
 }
 
 const styleLightIcon = () => {
@@ -707,5 +735,7 @@ export {
     styleLightIcon,
     showEditPopup,
     createBlurBackdrop,
+    retrieveStoredDisplayMode,
+    renderStoredView,
     displayMode
 }

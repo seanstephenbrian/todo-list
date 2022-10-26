@@ -2,7 +2,7 @@ import '../style.css';
 
 import { retrieveStoredList } from './list.js';
 
-import { renderHeaderFooter, renderNow, styleLightIcon, switchToLight } from './page.js';
+import { renderHeaderFooter, renderStoredView, retrieveStoredDisplayMode } from './page.js';
 
 import { addInitialListeners } from './listen.js';
 
@@ -12,8 +12,6 @@ addInitialListeners();
 
 retrieveStoredList();
 
-renderNow();
+renderStoredView();
 
-// set light mode as default:
-switchToLight();
-styleLightIcon();
+retrieveStoredDisplayMode();
