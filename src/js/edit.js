@@ -33,7 +33,7 @@ const renderEditForm = (index) => {
             const formTitle = document.createElement('div');
             formTitle.classList.add('form-title');
             formItself.appendChild(formTitle);
-            const formTitleText = document.createElement('span');
+            const formTitleText = document.createElement('div');
             formTitleText.classList.add('form-title-text', 'edit-form-title-text');
             formTitleText.textContent = `editing '${item.title}'`;
             formTitle.appendChild(formTitleText);

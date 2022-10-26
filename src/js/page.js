@@ -277,7 +277,6 @@ const renderAddForm = () => {
     }
 
     addFormListeners();
-
 }
 
 const submitAddForm = () => {
@@ -309,7 +308,6 @@ const submitAddForm = () => {
     }
 
     removeBlurBackdrop();
-
 };
 
 
@@ -347,7 +345,6 @@ const submitEditForm = (e) => {
     if (displayMode === 'dark') {
         switchToDark();
     }
-
 }
 
 // changes background color and outline for radio options depending on selection:

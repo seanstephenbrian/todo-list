@@ -337,6 +337,15 @@ header {
 		"submit-button";
 }
 
+.edit-form-title-text {
+	max-height: calc(1.7*var(--rvv));
+	max-width: calc(12*var(--rvv));
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin-right: calc(var(--rvv));
+}
+
 .blur-backdrop {
 	z-index: 2;
 	position: fixed;
@@ -356,7 +365,7 @@ header {
 }
 
 .form-title-text {
-	font-size: calc(0.8*var(--rvv));
+	font-size: calc(0.7*var(--rvv));
 }
 
 .form-title-text:hover {
