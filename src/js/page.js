@@ -48,8 +48,15 @@ let displayMode;
 // generate base page structure:
 const renderPage = () => {
 
-    // add favicon to head:
     const head = document.querySelector('head');
+
+    // disable zoom to ensure page layout doesn't break on mobile:
+    // const meta = document.createElement('meta');
+    // meta.setAttribute('name', 'viewport');
+    // meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+    // head.appendChild(meta);
+
+    // add favicon:
     const favIcon = document.createElement('link');
     favIcon.setAttribute('rel', 'icon');
     favIcon.setAttribute('href', FavIcon);
@@ -677,6 +684,7 @@ const switchToDark = () => {
     });
     displayMode = 'dark';
     localStorage.setItem('displayMode', 'dark');
+    styleDarkIcon();
 }
 
 const styleDarkIcon = () => {
@@ -698,6 +706,7 @@ const switchToLight = () => {
     });
     displayMode = 'light';
     localStorage.setItem('displayMode', 'light');
+    styleLightIcon();
 }
 
 const retrieveStoredDisplayMode = () => {

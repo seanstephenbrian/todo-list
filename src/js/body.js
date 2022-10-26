@@ -11,7 +11,10 @@ const setBodyHeight = () => {
 // set body width to exactly the inner width of the browser:
 const setBodyWidth = () => {
     const wrapper = document.querySelector('.wrapper');
-    wrapper.style.maxWidth = window.innerWidth + "px";
+    const width = window.innerWidth;
+    wrapper.style.maxWidth = width + "px";
+    const viewport = document.querySelector(`meta[name='viewport']`);
+    viewport.setAttribute('content', `width=${width} initial-scale=1.0, maximum-scale=2.0`)
 };
 
 // workaround to check for safari landscape orientation:

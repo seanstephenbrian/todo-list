@@ -14,8 +14,6 @@ import {
     removeAddForm, 
     switchToLight,
     switchToDark,
-    styleLightIcon,
-    styleDarkIcon,
     showEditPopup,
     submitEditForm,
     removeEditForm } from './page.js';
@@ -49,11 +47,9 @@ const addInitialListeners = () => {
     // add listeners to light/dark mode display icons:
     const lightIcon = document.querySelector('.light-mode');
     lightIcon.addEventListener('click', switchToLight);
-    lightIcon.addEventListener('click', styleLightIcon);
 
     const darkIcon = document.querySelector('.dark-mode');
     darkIcon.addEventListener('click', switchToDark);
-    darkIcon.addEventListener('click', styleDarkIcon);
 
 }
 
