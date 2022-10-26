@@ -10,8 +10,8 @@ import {
     uncheckCheckbox,
     renderAddForm,
     styleRadioOption,
-    submitForm,
-    removeForm, 
+    submitAddForm,
+    removeAddForm, 
     switchToLight,
     switchToDark,
     styleLightIcon,
@@ -66,7 +66,7 @@ const addFormListeners = () => {
 
     // add close button listener:
     const closeButton = document.querySelector('.close-button');
-    closeButton.addEventListener('click', removeForm);
+    closeButton.addEventListener('click', removeAddForm);
 
     // add radio input listeners:
     const radioInputs = document.querySelectorAll('.radio-input');
@@ -80,7 +80,7 @@ const addFormListeners = () => {
     const form = document.querySelector('.add-form-itself');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        submitForm();
+        submitAddForm();
     });
 }
 

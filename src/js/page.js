@@ -139,15 +139,13 @@ const renderAddForm = () => {
 
     // create add form container:
     const addForm = document.createElement('div');
-    addForm.classList.add('displayed-item', 'add-form');
+    addForm.classList.add('add-form');
 
     // insert add form before add button:
     const main = document.querySelector('.main');
-    const addButton = document.querySelector('.add-item-button');
-    main.insertBefore(addForm, addButton);
+    main.appendChild(addForm);
 
-    // remove add button:
-    addButton.remove();
+    createBlurBackdrop();
 
         // create the form itself:
         const formItself = document.createElement('form');
@@ -264,7 +262,7 @@ const renderAddForm = () => {
                         laterLabel.textContent = 'later';
                         laterOption.appendChild(laterLabel);
 
-            // create a new 'add' button at the bottom of the form:
+            // create an 'add' button at the bottom of the form:
             const formButton = document.createElement('button');
             formButton.classList.add('submit-button');
             formButton.setAttribute('type', 'submit');
@@ -273,7 +271,7 @@ const renderAddForm = () => {
             formButtonIcon.setAttribute('src', AddIcon);
             formButton.appendChild(formButtonIcon);
     
-    // render the add form in dark mode if it's turned on:
+    // render the add form in the correct display style:
     if (displayMode === 'dark') {
         switchToDark();
     }
@@ -282,7 +280,7 @@ const renderAddForm = () => {
 
 }
 
-const submitForm = () => {
+const submitAddForm = () => {
 
     // get form values:
     const title = document.querySelector('.title-input');
@@ -310,6 +308,8 @@ const submitForm = () => {
         switchToDark();
     }
 
+    removeBlurBackdrop();
+
 };
 
 
@@ -332,7 +332,7 @@ const submitEditForm = (e) => {
     editTodo(index, 'description', description.value);
     editTodo(index, 'priority', priority);
 
-    removeEditBackdrop();
+    removeBlurBackdrop();
 
     // re-render the current page view:
     if (currentView = 'now') {
@@ -367,25 +367,28 @@ const styleRadioOption = (e) => {
 }
 
 // removes the 'add a new task' form from DOM:
-const removeForm = () => {
+const removeAddForm = () => {
     const form = document.querySelector('.add-form');
     form.remove();
-    // replace the '+' button which was previously deleted:
-    renderAddButton();
-    if (displayMode === 'dark') {
-        switchToDark();
-    }
+    removeBlurBackdrop();
 }
 
 const removeEditForm = () => {
     const form = document.querySelector('.edit-form');
     form.remove();
-    removeEditBackdrop();
+    removeBlurBackdrop();
 }
 
-const removeEditBackdrop = () => {
-    const editBackdrop = document.querySelector('.edit-backdrop');
-    editBackdrop.remove();
+// create overlay for blur backdrop filter:
+const createBlurBackdrop = () => {
+    const blurBackdrop = document.createElement('div');
+    blurBackdrop.classList.add('blur-backdrop');
+    document.body.appendChild(blurBackdrop);
+}
+
+const removeBlurBackdrop = () => {
+    const blurBackdrop = document.querySelector('.blur-backdrop');
+    blurBackdrop.remove();
 }
 
 // apply an outline style to the selected display's nav button:
@@ -564,8 +567,7 @@ const uncheckCheckbox = (checkboxDiv) => {
 const showEditPopup = (e) => {
     const itemToEdit = e.target.parentElement.parentElement;
     const index = itemToEdit.dataset.id;
-    renderEditForm(index);
-    
+    renderEditForm(index);   
 }
 
 const expandItem = (e) => {
@@ -700,14 +702,15 @@ export {
     uncheckCheckbox,
     renderAddForm,
     styleRadioOption,
-    submitForm,
+    submitAddForm,
     submitEditForm,
-    removeForm,
+    removeAddForm,
     removeEditForm,
     switchToDark,
     switchToLight,
     styleDarkIcon,
     styleLightIcon,
     showEditPopup,
+    createBlurBackdrop,
     displayMode
 }

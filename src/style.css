@@ -52,8 +52,7 @@ time, mark, audio, video {
 	--later-item-bg: #da8680c1;
 	--description-bg: #d8f2ff95;
 	--add-item-button: #ba8d5e85;
-	--add-form-bg: #f0d7a9de;
-	--edit-form-bg: #f0d7a9;
+	--form-bg: #f0d7a9;
 	--priority-button-default: #c8b5a285;
 	--form-button: #ba8d5e85;
 	--form-input-bg: #F3EEE5;
@@ -76,7 +75,7 @@ time, mark, audio, video {
 	--dark-now-item-bg: rgba(46, 80, 28, 0.527);
 	--dark-later-item-bg: #754743b2;
 	--dark-add-item-button: #815e3670;
-	--dark-add-form-bg: #3c3935de;
+	--dark-form-bg: #423d38;
 	--dark-priority-button-default: #8b776285;
 	--dark-form-button: #ba8d5e85;
 	--dark-form-input-bg: #aba69a;
@@ -306,14 +305,28 @@ header {
 	max-width: 100%;
 }
 
-.displayed-item.add-form {
+.add-form,
+.edit-form {
 	display: block;
-	background-color: var(--add-form-bg);
+	z-index: 3;
+	position: fixed;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .add-form-itself,
 .edit-form-itself {
+	background-color: var(--form-bg);
 	display: grid;
+	width: 90vw;
+	position: relative;
+	max-width: calc(15*var(--rvv));
+	font-family: 'Sublima';
+	font-size: calc(0.6*var(--rvv));
+	padding: calc(0.1*var(--rvv)) calc(0.3*var(--rvv));
+	border: 1px solid black;
+	border-radius: calc(0.8*var(--rvv));
 	grid-template-rows: calc(1.7*var(--rvv)) calc(var(--rvv)) calc(4*var(--rvv)) calc(var(--rvv)) calc(2.2*var(--rvv));
 	row-gap: calc(0.25*var(--rvv));
 	grid-template-areas:
@@ -324,30 +337,13 @@ header {
 		"submit-button";
 }
 
-.edit-backdrop {
+.blur-backdrop {
 	z-index: 2;
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
 	backdrop-filter: blur(5px);
 	-webkit-backdrop-filter: blur(5px);
-}
-
-.edit-form-itself {
-	position: fixed;
-	z-index: 3;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-	background-color: var(--edit-form-bg);
-	width: 90vw;
-	max-width: calc(15*var(--rvv));
-	position: relative;
-	font-family: 'Sublima';
-	font-size: calc(0.6*var(--rvv));
-	padding: calc(0.1*var(--rvv)) calc(0.3*var(--rvv));
-	border: 1px solid black;
-	border-radius: calc(0.8*var(--rvv));
 }
 
 .form-title {
@@ -654,12 +650,9 @@ body.dark {
 	text-decoration-skip-ink: none;
 }
 
-.displayed-item.add-form.dark {
-	background-color: var(--dark-add-form-bg);
-}
-
+.add-form-itself.dark,
 .edit-form-itself.dark {
-	background-color: var(--dark-add-form-bg);
+	background-color: var(--dark-form-bg);
 }
 
 .close-button.dark {

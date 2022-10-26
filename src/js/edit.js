@@ -3,7 +3,8 @@ import CloseIcon from '../img/close.svg';
 import { getAll } from './list.js';
 import { 
     displayMode,
-    switchToDark } from './page.js';
+    switchToDark,
+    createBlurBackdrop } from './page.js';
 import { addEditFormListeners } from './listen';
 
 const renderEditForm = (index) => {
@@ -11,10 +12,7 @@ const renderEditForm = (index) => {
     const list = getAll();
     const item = list[index];
 
-    // create overlay for blur backdrop filter:
-    const editBackdrop = document.createElement('div');
-    editBackdrop.classList.add('edit-backdrop');
-    document.body.appendChild(editBackdrop);
+    createBlurBackdrop();
 
     // create edit form container:
     const editForm = document.createElement('div');
