@@ -22,6 +22,7 @@ const checkForLandscape = () => {
 const setBody = () => {
     setBodyHeight();
     setBodyWidth();
+    setTimeout(setBody, 1000);
 };
 
 export { setBodyHeight, setBodyWidth, setBody, checkForLandscape };
