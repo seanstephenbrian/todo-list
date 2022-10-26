@@ -12,6 +12,9 @@ renderPage();
 
 setBody();
 
+// set the body every second:
+setTimeout(setBody, 1000);
+
 addInitialListeners();
 
 retrieveStoredList();
