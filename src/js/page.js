@@ -319,16 +319,14 @@ const submitEditForm = (e) => {
     // get form values:
     const title = document.querySelector('.edit-title-input');
     const description = document.querySelector('.edit-description-input');
-    let priority;
-    if (document.getElementById('now').checked) {
-        priority = 'now';
-    } else if (document.getElementById('later').checked) {
-        priority = 'later';
-    }
 
     editTodo(index, 'title', title.value);
     editTodo(index, 'description', description.value);
-    editTodo(index, 'priority', priority);
+    if (document.getElementById('now').checked) {
+        editTodo(index, 'priority', 'now');
+    } else if (document.getElementById('later').checked) {
+        editTodo(index, 'priority', 'later');
+    }
 
     removeBlurBackdrop();
 
