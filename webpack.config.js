@@ -10,10 +10,6 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            'meta': 
-                {
-                    'viewport': 'width=device-width, initial-scale=1.0, maximum-scale=2.0',
-                },
             title: 'now // later :: a simple to-do list',
         }),
     ],

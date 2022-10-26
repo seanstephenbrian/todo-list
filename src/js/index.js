@@ -10,10 +10,10 @@ import { setBody } from './body';
 
 renderPage();
 
-setBody();
+// setBody();
 
-// set the body every second:
-setTimeout(setBody, 1000);
+// // set the body every second:
+// setTimeout(setBody, 1000);
 
 addInitialListeners();
 

@@ -22,15 +22,15 @@ import { deleteTodo, editTodo, getCompleted } from './list.js';
 // event listeners to add when the page first loads:
 const addInitialListeners = () => {
 
-    // set initial body height & width..
-    setBody();
+    // // set initial body height & width..
+    // setBody();
 
-    // then adjust body height & width if needed whenever the window is resized, or when the screen orientation changes:
-    window.addEventListener('resize', setBody);
-    // if browser is not safari:
-    if (!(navigator.userAgent.indexOf("Safari") != -1 )) {
-        screen.orientation.addEventListener('change', setBody);
-    }
+    // // then adjust body height & width if needed whenever the window is resized, or when the screen orientation changes:
+    // window.addEventListener('resize', setBody);
+    // // if browser is not safari:
+    // if (!(navigator.userAgent.indexOf("Safari") != -1 )) {
+    //     screen.orientation.addEventListener('change', setBody);
+    // }
     
     // add click listeners to nav buttons to trigger render functions:
     const now = document.querySelector('.now');

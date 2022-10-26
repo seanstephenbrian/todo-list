@@ -108,13 +108,18 @@ body {
 }
 
 body {
+	margin: 0;
+	padding: 0;
 	height: 100vh;
 	width: 100vw;
 }
 
 .wrapper {
 	min-height: 100%;
-	width: 100%;
+	width: 100vw;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
 	position: relative;
 	overflow-x: hidden;
 	display: flex;
