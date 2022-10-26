@@ -46,8 +46,14 @@ const getCurrentView = () => {
 let displayMode;
 
 // generate base page structure:
-const renderHeaderFooter = () => {
-    // // add favicon:
+const renderPage = () => {
+
+    // create outer page wrapper <div>:
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('wrapper');
+    document.body.appendChild(wrapper);
+
+    // add favicon:
     const head = document.querySelector('head');
     const favIcon = document.createElement('link');
     favIcon.setAttribute('rel', 'icon');
@@ -56,7 +62,7 @@ const renderHeaderFooter = () => {
 
     // create header:
     const header = document.createElement('header');
-    document.body.appendChild(header);
+    wrapper.appendChild(header);
 
         // create title bar:
         const title = document.createElement('div');
@@ -113,11 +119,11 @@ const renderHeaderFooter = () => {
     // create main to-do list display section:
     const main = document.createElement('div');
     main.classList.add('main');
-    document.body.appendChild(main);
+    wrapper.appendChild(main);
 
     // create footer:
     const footer = document.createElement('footer');
-    document.body.appendChild(footer);
+    wrapper.appendChild(footer);
     footer.textContent = 'copyright © 2022 | sean stephen brian';
 }
 
@@ -378,7 +384,8 @@ const removeEditForm = () => {
 const createBlurBackdrop = () => {
     const blurBackdrop = document.createElement('div');
     blurBackdrop.classList.add('blur-backdrop');
-    document.body.appendChild(blurBackdrop);
+    const wrapper = document.querySelector('.wrapper');
+    wrapper.appendChild(blurBackdrop);
 }
 
 const removeBlurBackdrop = () => {
@@ -664,7 +671,7 @@ const shrinkItem = (e) => {
 }
 
 const switchToDark = () => {
-    const everything = document.querySelectorAll('*');
+    const everything = document.querySelectorAll('body *');
     everything.forEach(element => {
         element.classList.add('dark');
     });
@@ -715,7 +722,7 @@ const styleLightIcon = () => {
 }
 
 export { 
-    renderHeaderFooter, 
+    renderPage, 
     renderNow, 
     renderLater, 
     renderAll, 

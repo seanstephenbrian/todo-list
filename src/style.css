@@ -81,6 +81,8 @@ time, mark, audio, video {
 	--dark-form-input-bg: #aba69a;
 	--dark-submit-button-bg: #668da8b4;
 	--dark-close-button: #96857385;
+
+	box-sizing: border-box;
 }
 
 @font-face {
@@ -98,26 +100,33 @@ time, mark, audio, video {
 	src: url('font/sublima/sublima-extra-bold.otf');
 }
 
-
 html,
 body {
-    box-sizing: border-box;
+	position: relative;
+	/* overflow-x: hidden; */
 }
 
 body {
-    display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+.wrapper {
+	position: relative;
+	overflow-x: hidden;
+	display: flex;
     flex-direction: column;
 }
 
 header {
 	height: 15vh;
-	min-height: calc(3*var(--rvv));
+	min-height: calc(3.2*var(--rvv));
 	display: flex;
 	flex-direction: column;
 }
 
 .title {
-	min-height: calc(0.8*var(--rvv));
+	min-height: calc(var(--rvv));
 	flex: 1;
 	overflow-x: hidden;
 	display: flex;
@@ -602,7 +611,7 @@ footer {
 
 /* dark mode styling: */
 
-body.dark {
+.wrapper.dark {
 	color: var(--dark-text);
 }
 
