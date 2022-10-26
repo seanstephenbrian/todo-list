@@ -82,7 +82,7 @@ time, mark, audio, video {
 	--dark-submit-button-bg: #668da8b4;
 	--dark-close-button: #96857385;
 
-	box-sizing: border-box;
+	touch-action: pan-x pan-y;
 }
 
 @font-face {
@@ -102,8 +102,8 @@ time, mark, audio, video {
 
 html,
 body {
+	box-sizing: border-box;
 	position: relative;
-	/* overflow-x: hidden; */
 }
 
 body {

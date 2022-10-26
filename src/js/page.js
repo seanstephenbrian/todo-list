@@ -48,17 +48,17 @@ let displayMode;
 // generate base page structure:
 const renderPage = () => {
 
-    // create outer page wrapper <div>:
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('wrapper');
-    document.body.appendChild(wrapper);
-
-    // add favicon:
+    // add favicon to head:
     const head = document.querySelector('head');
     const favIcon = document.createElement('link');
     favIcon.setAttribute('rel', 'icon');
     favIcon.setAttribute('href', FavIcon);
     head.appendChild(favIcon);
+    
+    // create outer page wrapper <div>:
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('wrapper');
+    document.body.appendChild(wrapper);
 
     // create header:
     const header = document.createElement('header');
