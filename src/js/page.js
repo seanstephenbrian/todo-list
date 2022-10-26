@@ -562,6 +562,8 @@ const renderStoredView = () => {
         renderLater();
     } else if (storedView === 'all') {
         renderAll();
+    } else {
+        renderNow();
     }
 }
 
