@@ -104,7 +104,7 @@ html,
 body {
 	box-sizing: border-box;
 	position: relative;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 body {
@@ -122,6 +122,7 @@ body {
 	margin-right: auto;
 	position: relative;
 	overflow-x: hidden;
+	overflow-y: scroll;
 	display: flex;
     flex-direction: column;
 }
