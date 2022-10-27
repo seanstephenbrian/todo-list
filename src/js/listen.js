@@ -1,4 +1,4 @@
-import { setBody } from './body.js';
+import { setBodyHeight } from './body.js';
 import { 
     renderNow, 
     renderLater, 
@@ -22,11 +22,12 @@ import { deleteTodo, editTodo, getCompleted } from './list.js';
 // event listeners to add when the page first loads:
 const addInitialListeners = () => {
 
-    // // set initial body height & width..
-    // setBody();
+    // set initial body height & width..
+    setBodyHeight();
 
-    // // then adjust body height & width if needed whenever the window is resized, or when the screen orientation changes:
-    // window.addEventListener('resize', setBody);
+    // then adjust body height & width if needed whenever the window is resized, 
+    window.addEventListener('resize', setBodyHeight);
+    // or when the screen orientation changes:
     // // if browser is not safari:
     // if (!(navigator.userAgent.indexOf("Safari") != -1 )) {
     //     screen.orientation.addEventListener('change', setBody);
