@@ -551,7 +551,7 @@ textarea:not(:focus) {
 }
 
 .edit img {
-	width: calc(0.8*var(--rvv));
+	width: calc(0.86*var(--rvv));
 }
 
 .checkbox {
