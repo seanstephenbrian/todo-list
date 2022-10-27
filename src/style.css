@@ -111,7 +111,7 @@ body {
 body {
 	margin: 0;
 	padding: 0;
-	min-height: calc(100vh - 20px);
+	min-height: 100vh;
 	min-width: 100vw;
 }
 
@@ -802,9 +802,9 @@ footer.dark {
 		text-underline-offset: 0;
 	}
 
-	footer {
+	/* footer {
 		padding-bottom: 20px;
-	}
+	} */
 }
 
 /* @media screen and (orientation: landscape) {
