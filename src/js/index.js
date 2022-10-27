@@ -6,11 +6,11 @@ import {
     renderStoredView, 
     retrieveStoredDisplayMode } from './page.js';
 import { addInitialListeners } from './listen.js';
-import { setBodyHeight } from './body';
+import { setBody } from './body';
 
 renderPage();
 
-setBodyHeight();
+setBody();
 
 addInitialListeners();
 

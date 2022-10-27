@@ -19,6 +19,8 @@ import {
 
 import { renderEditForm } from './edit.js';
 
+import { setBody } from './body.js';
+
 import CheckedCheckboxIcon from '../img/checked-checkbox.svg';
 import EmptyCheckboxIcon from '../img/empty-checkbox.svg';
 import ExpandIcon from '../img/expand.svg';

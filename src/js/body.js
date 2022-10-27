@@ -1,4 +1,4 @@
-// set body height to exactly the inner height of the browser on narrow (likely mobile) screens:
+// set body min-height to exactly the inner height of the browser on narrow (likely mobile) screens:
 const setBodyHeight = () => {
     const body = document.querySelector('body');
     if (window.innerWidth < 751) {
@@ -8,7 +8,7 @@ const setBodyHeight = () => {
     }
 };
 
-// set body width to exactly the inner width of the browser:
+// set body max-width to exactly the inner width of the browser:
 const setBodyWidth = () => {
     const body = document.querySelector('body');
     const width = window.innerWidth;
@@ -20,4 +20,4 @@ const setBody = () => {
     setBodyWidth();
 };
 
-export { setBodyHeight, setBodyWidth, setBody };
+export { setBody };
