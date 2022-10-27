@@ -23,7 +23,7 @@
 // set body min-height to exactly the inner height of the browser on narrow (likely mobile) screens:
 const setBodyHeight = () => {
     const body = document.querySelector('body');
-    if (window.innerWidth < 751) {
+    if (window.innerWidth < window.innerHeight && window.innerWidth < 751) {
         body.style.height = window.innerHeight + "px";
     } else {
         body.style.height = '100vh';
