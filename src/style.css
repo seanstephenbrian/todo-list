@@ -116,13 +116,12 @@ body {
 
 .wrapper {
 	min-height: 100%;
-	width: 100vw;
+	min-width: 100%;
 	max-width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
 	overflow-x: hidden;
-	overflow-y: scroll;
 	display: flex;
     flex-direction: column;
 }
@@ -142,7 +141,7 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: calc(0.6*var(--rvv));
+	gap: calc(0.3*var(--rvv));
 	background-color: var(--title-footer-color);
 	border-bottom: 1px solid black;
 }
@@ -607,7 +606,7 @@ textarea:not(:focus) {
 
 footer {
 	height: 5vh;
-	min-height: calc(0.8*var(--rvv));
+	min-height: calc(var(--rvv));
 	background-color: var(--title-footer-color);
 	display: flex;
 	justify-content: center;

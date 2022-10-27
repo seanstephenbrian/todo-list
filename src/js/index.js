@@ -6,14 +6,11 @@ import {
     renderStoredView, 
     retrieveStoredDisplayMode } from './page.js';
 import { addInitialListeners } from './listen.js';
-import { setBody } from './body';
+import { setBodyHeight } from './body';
 
 renderPage();
 
-// setBody();
-
-// // set the body every second:
-// setTimeout(setBody, 1000);
+setBodyHeight();
 
 addInitialListeners();
 
