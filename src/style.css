@@ -83,6 +83,7 @@ time, mark, audio, video {
 	--dark-close-button: #96857385;
 
 	touch-action: pan-x pan-y;
+
 }
 
 @font-face {
@@ -110,8 +111,8 @@ body {
 body {
 	margin: 0;
 	padding: 0;
-	height: 100vh;
-	width: 100vw;
+	min-height: calc(100vh - 20px);
+	min-width: 100vw;
 }
 
 .wrapper {
@@ -800,11 +801,15 @@ footer.dark {
 		text-decoration-skip-ink: none;
 		text-underline-offset: 0;
 	}
+
+	footer {
+		padding-bottom: 20px;
+	}
 }
 
-@media screen and (orientation: landscape) {
+/* @media screen and (orientation: landscape) {
 	body {
 		min-height: 100vh;
 		min-width: 100vw;
 	}
-}
+} */
