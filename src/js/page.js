@@ -133,7 +133,8 @@ const renderPage = () => {
     // create footer:
     const footer = document.createElement('footer');
     wrapper.appendChild(footer);
-    footer.textContent = 'copyright © 2022 | sean stephen brian';
+    const date = new Date();
+    footer.textContent = `copyright © ${date.getFullYear()} | sean stephen brian`;
 }
 
 // renders 'add' button within the main content section:
